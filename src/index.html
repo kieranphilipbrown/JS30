@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="css/app.css" />
     </head>
     <body>
-        <button class="nav__button--open">
+        <a class="nav__button--open">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -26,11 +26,11 @@
                 />
                 <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
-        </button>
-        <nav class="nav">
+        </a>
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
             <div class="nav__header">
                 <span>Day:</span>
-                <button class="nav__button--close">Close</button>
+                <a class="nav__button--close">Close</a>
             </div>
             <ul class="nav__list">
                 <li><a href="/#" class="nav__item">1 - JS Drum Kit</a></li>

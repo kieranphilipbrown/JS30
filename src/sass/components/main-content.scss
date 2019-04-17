@@ -10,6 +10,12 @@ main {
     font-family: "Josefin Sans", sans-serif;
     justify-content: center;
     min-height: 100vh;
+
+    a {
+        &:focus {
+            @extend .focus;
+        }
+    }
 }
 
 .main_content {
