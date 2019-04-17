@@ -1,0 +1,22 @@
+/*------------------*
+# Main Content
+*------------------*/
+
+main {
+    align-items: center;
+    background: #f0db4f;
+    display: flex;
+    flex-direction: column;
+    font-family: "Josefin Sans", sans-serif;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.main_content {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
