@@ -101,3 +101,17 @@
 .fade_in {
     opacity: 1;
 }
+
+.nav__overlay {
+    background: $color-black;
+    height: 100%;
+    right: 0;
+    opacity: 0.6;
+    position: absolute;
+    transition: 0.4s ease;
+    width: 0;
+}
+
+.nav__overlay--open {
+    width: calc(100% - 300px);
+}
