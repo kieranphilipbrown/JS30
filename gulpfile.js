@@ -1,11 +1,13 @@
 const gulp = require("gulp");
+const { parallel, series } = require("gulp");
+
 const imagemin = require("gulp-imagemin");
+const htmlmin = require("gulp-htmlmin");
 const uglify = require("gulp-uglify");
 const sass = require("gulp-sass");
 const concat = require("gulp-concat");
-const watch = require("gulp-watch");
 const browserSync = require("browser-sync").create(); //https://browsersync.io/docs/gulp#page-top
-const reload = browserSync.reload;
+const nunjucksRender = require("gulp-nunjucks-render");
 
 /*
 TOP LEVEL FUNCTIONS
@@ -15,72 +17,98 @@ TOP LEVEL FUNCTIONS
     gulp.watch = Watch files and folders for changes
 */
 
-// Useful Logs message
-// Type 'gulp message' in the terminal and it should output the task message
-gulp.task("message", function() {
-    return console.log("Gulp is running...");
-});
-
 // Optimise Images
-gulp.task("imageMin", () =>
-    gulp
-        .src("src/images/*")
+function imageMin(cb) {
+    gulp.src("src/assets/images/*")
         .pipe(imagemin())
-        .pipe(gulp.dest("dist/images"))
-);
+        .pipe(gulp.dest("dist/images"));
+    cb();
+}
 
 // Copy all HTML files to Dist
-// To run this task use 'gulp copyHtml'
-gulp.task("copyHtml", function() {
+function copyHTML(cb) {
     gulp.src("src/*.html").pipe(gulp.dest("dist"));
-});
+    cb();
+}
 
-// Minify JS
-gulp.task("minify", function() {
-    gulp.src("src/js/*.js")
-        .pipe(uglify())
-        .pipe(gulp.dest("dist/js"));
-});
+// Minify HTML
+function minifyHTML(cb) {
+    gulp.src("src/*.html")
+        .pipe(gulp.dest("dist"))
+        .pipe(
+            htmlmin({
+                collapseWhitespace: true
+            })
+        )
+        .pipe(gulp.dest("dist"));
+    cb();
+}
 
 // Scripts
-gulp.task("scripts", function() {
-    gulp.src("src/js/*js")
+function js(cb) {
+    gulp.src("src/assets/js/*js")
         .pipe(concat("main.js"))
         .pipe(uglify())
         .pipe(gulp.dest("dist/js"));
-});
+    cb();
+}
 
 // Compile Sass
-gulp.task("sass", function() {
-    gulp.src("src/sass/*.scss")
+function css(cb) {
+    gulp.src("src/assets/sass/*.scss")
         .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
-        .pipe(gulp.dest("dist/css"));
-});
+        .pipe(gulp.dest("dist/css"))
+        // Stream changes to all browsers
+        .pipe(browserSync.stream());
+    cb();
+}
 
-// Watch files for chanegs
-gulp.task("watch", function() {
-    gulp.watch("src/sass/**/*.scss", ["sass"]);
-});
+// Process Nunjucks
+function nunjucks(cb) {
+    gulp.src("src/pages/*.html")
+        .pipe(
+            nunjucksRender({
+                path: ["src/templates/"] // String or Array
+            })
+        )
+        .pipe(gulp.dest("dist"));
+    cb();
+}
 
-// Livereload
-gulp.task("serve", function() {
-    // Serve files from the root of this project
+function nunjucksMinify(cb) {
+    gulp.src("src/pages/*.html")
+        .pipe(
+            nunjucksRender({
+                path: ["src/templates/"] // String or Array
+            })
+        )
+        .pipe(
+            htmlmin({
+                collapseWhitespace: true
+            })
+        )
+        .pipe(gulp.dest("dist"));
+    cb();
+}
+
+// Watch Files
+function watch_files() {
     browserSync.init({
         server: {
             baseDir: "dist/"
         }
     });
+    gulp.watch("src/assets/sass/**/*.scss", css);
+    gulp.watch("src/assets/js/*.js", js).on("change", browserSync.reload);
+    gulp.watch("src/templates/*.html", nunjucks).on(
+        "change",
+        browserSync.reload
+    );
+    gulp.watch("src/pages/*.html", nunjucks).on("change", browserSync.reload);
+}
 
-    gulp.watch("src/sass/**/*.scss", ["sass"]).on("change", reload);
-    gulp.watch("src/js/*.js", ["scripts"]).on("change", reload);
-    gulp.watch("src/*.html", ["copyHtml"]).on("change", reload);
-});
+// Default 'gulp' command with start local server and watch files for changes.
+exports.default = series(nunjucks, css, js, imageMin, watch_files);
 
-// Do all the tasks and run with the default command - 'gulp'
-gulp.task("default", ["imageMin", "copyHtml", "sass", "scripts", "serve"]);
-
-// Gulp Build
-gulp.task("build", ["imageMin", "copyHtml", "sass", "scripts"]);
-
-// This is just another example of how to run each of the tasks with the default gulp command
-//gulp.task('default', ['message', 'imageMin', 'sass', 'copyHtml', 'scripts', 'watch'])
+// 'gulp build' will build all assets but not run on a local server.
+exports.build = parallel(nunjucksMinify, css, js, imageMin);
