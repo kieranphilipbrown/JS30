@@ -31,6 +31,12 @@ function copyHTML(cb) {
     cb();
 }
 
+// Copy all sound files to dist
+function sounds(cb) {
+    gulp.src("src/assets/sounds/*.wav").pipe(gulp.dest("dist/sounds"));
+    cb();
+}
+
 // Minify HTML
 function minifyHTML(cb) {
     gulp.src("src/*.html")
@@ -108,7 +114,7 @@ function watch_files() {
 }
 
 // Default 'gulp' command with start local server and watch files for changes.
-exports.default = series(nunjucks, css, js, imageMin, watch_files);
+exports.default = series(nunjucks, css, js, imageMin, sounds, watch_files);
 
 // 'gulp build' will build all assets but not run on a local server.
-exports.build = parallel(nunjucksMinify, css, js, imageMin);
+exports.build = parallel(nunjucksMinify, css, js, imageMin, sounds);
