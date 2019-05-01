@@ -1,0 +1,34 @@
+/*------------------*
+# Day 1 - Drum Kit
+*------------------*/
+
+.keys {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 90vh;
+    padding: 10rem 0;
+}
+
+.key {
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.4rem solid black;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 1.5rem;
+    margin: 1rem;
+    padding: 1rem 0.5rem;
+    text-align: center;
+    text-shadow: 0 0 0.5rem black;
+    transition: all 0.07s ease;
+    width: 10rem;
+
+    span {
+        display: block;
+    }
+}
+
+.playing {
+    border-color: #ffc600;
+    box-shadow: 0 0 1rem #ffc600;
+    transform: scale(1.1);
+}
