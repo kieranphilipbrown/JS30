@@ -21,6 +21,10 @@
     text-shadow: 0 0 0.5rem black;
     transition: all 0.07s ease;
     width: 10rem;
+
+    span {
+        display: block;
+    }
 }
 
 .playing {
