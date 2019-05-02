@@ -119,4 +119,5 @@
 .nav__overlay--open {
     opacity: 0.6;
     width: calc(100% - 300px);
+    z-index: 30;
 }
