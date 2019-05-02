@@ -3,9 +3,10 @@
 {% block content %}
     <main>
         <div class="content_width">
-            <button>Analog</button>
-            <span>Or</span>
-            <button>Digital</button>
+            <div class="clock_toggle">
+                <button class="clock_button__analog">Analog</button>
+                <button class="clock_button__digital">Digital</button>
+            </div>
             <div class="clock">
                 <div class="clock-face">
                     <div class="hand hour-hand"></div>
@@ -13,7 +14,7 @@
                     <div class="hand second-hand"></div>
                 </div>
             </div>
-            <div class="digital-clock">
+            <div class="digital-clock hidden">
                 <div class="digital-clock__alarm"></div>
                 <div class="digital-clock__inner">
                     <span class="hours digits"></span>
@@ -28,6 +29,15 @@
         </div>
     </main>
     <script>
+
+        // Buttons
+        const clockButtonAnalog = document.querySelector(".clock_button__analog");
+        const clockButtonDigital = document.querySelector(".clock_button__digital");
+
+        // Clocks
+        const analogClock = document.querySelector(".clock");
+        const digitalClock = document.querySelector(".digital-clock");
+
         // Analog
         const secondHand = document.querySelector(".second-hand");
         const minuteHand = document.querySelector(".min-hand");
@@ -68,6 +78,18 @@
         }
 
         setInterval(setDate, 1000);
+
+        // Analog button
+        clockButtonAnalog.addEventListener("click", function(){
+            analogClock.style.display = "block";
+            digitalClock.style.display = "none";
+        });
+
+        // Digital button
+        clockButtonDigital.addEventListener("click", function() {
+            digitalClock.style.display = "block";
+            analogClock.style.display = "none";
+        });
 
     </script>
 {% endblock %}

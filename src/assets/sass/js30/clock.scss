@@ -68,6 +68,7 @@
     display: grid;
     grid-template-columns: 0.7fr auto 0.7fr auto 0.4fr;
     justify-content: space-around;
+    min-width: 360px;
     padding: 2rem;
     text-align: center;
     width: 100%;
@@ -115,4 +116,16 @@
 
 .digital-clock__footright {
     right: 25px;
+}
+
+// Toggle buttons
+
+.clock_toggle {
+    position: absolute;
+    right: 0;
+    top: 1rem;
+}
+
+.hidden {
+    display: none;
 }
