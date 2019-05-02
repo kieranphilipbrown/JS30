@@ -2,6 +2,10 @@
 # Day 2 - Clock
 *------------------*/
 
+@import url("https://fonts.googleapis.com/css?family=Orbitron");
+
+// Analog
+
 .clock {
     border: 20px solid white;
     border-radius: 50%;
@@ -45,4 +49,15 @@
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     height: 8px;
+}
+
+// Digital
+
+.digital-clock {
+    align-items: center;
+    background: red;
+    display: flex;
+    font-family: "Orbitron", sans-serif;
+    justify-content: center;
+    padding: 4rem;
 }
