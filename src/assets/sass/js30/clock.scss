@@ -54,10 +54,52 @@
 // Digital
 
 .digital-clock {
-    align-items: center;
-    background: red;
-    display: flex;
+    background: #f9f9f9;
+    border-radius: 10px;
     font-family: "Orbitron", sans-serif;
+    padding: 0.7rem;
+    position: relative;
+}
+
+.digital-clock__inner {
+    align-items: center;
+    background: #333;
+    border-radius: 10px;
+    display: flex;
     justify-content: center;
-    padding: 4rem;
+    padding: 2rem;
+    width: 100%;
+}
+
+.hours,
+.minutes,
+.colon {
+    color: #a4fe7c;
+    font-size: 4rem;
+}
+
+.seconds,
+.colon--small {
+    color: #a4fe7c;
+    font-size: 2rem;
+    margin-top: 0.8rem;
+}
+
+.digital-clock__footleft,
+.digital-clock__footright {
+    background: #333333;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    bottom: -20px;
+    height: 20px;
+    position: absolute;
+    width: 25px;
+}
+
+.digital-clock__footleft {
+    left: 25px;
+}
+
+.digital-clock__footright {
+    right: 25px;
 }
