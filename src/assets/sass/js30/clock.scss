@@ -129,3 +129,24 @@
 .hidden {
     display: none;
 }
+
+.clock_button {
+    background: #282828;
+    border: 0;
+    border-radius: 4px;
+    color: $color-white;
+    font-size: 14px;
+    padding: 0.9rem;
+    text-decoration: none;
+    transition: 0.4s ease;
+
+    &:hover {
+        background: lighten(#282828, 10%);
+        cursor: pointer;
+    }
+
+    &:focus,
+    &:active {
+        @extend %focus;
+    }
+}
