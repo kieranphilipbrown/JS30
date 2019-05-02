@@ -150,3 +150,11 @@
         @extend %focus;
     }
 }
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
