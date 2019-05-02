@@ -1,0 +1,48 @@
+/*------------------*
+# Day 2 - Clock
+*------------------*/
+
+.clock {
+    border: 20px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
+        inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+    height: 30rem;
+    margin: 50px auto;
+    padding: 2rem;
+    position: relative;
+    width: 30rem;
+}
+
+.clock-face {
+    height: 100%;
+    position: relative;
+    transform: translateY(-3px); /* account for the height of the clock hands */
+    width: 100%;
+}
+
+.hand {
+    background: white;
+    height: 6px;
+    position: absolute;
+    transform: rotate(90deg);
+    transform-origin: 100%;
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    top: 50%;
+    width: 50%;
+}
+
+.second-hand {
+    height: 2px;
+}
+
+.min-hand {
+    height: 4px;
+}
+
+.hour-hand {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 8px;
+}
