@@ -65,9 +65,11 @@
     align-items: center;
     background: #333;
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 0.7fr auto 0.7fr auto 0.4fr;
+    justify-content: space-around;
     padding: 2rem;
+    text-align: center;
     width: 100%;
 }
 
@@ -83,6 +85,17 @@
     color: #a4fe7c;
     font-size: 2rem;
     margin-top: 0.8rem;
+}
+
+.digital-clock__alarm {
+    background: #f94040;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    top: -10px;
+    left: 140px;
+    height: 10px;
+    position: absolute;
+    width: 40%;
 }
 
 .digital-clock__footleft,
