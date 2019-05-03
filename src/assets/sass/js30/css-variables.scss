@@ -10,6 +10,7 @@
 
 .d3__img {
     background: var(--base);
+    border: 3px solid #333;
     filter: blur(var(--blur));
     padding: var(--spacing);
 }
