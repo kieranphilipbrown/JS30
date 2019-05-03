@@ -150,6 +150,19 @@
     right: 25px;
 }
 
+.digital-clock__line {
+    background: #ccb82f;
+    bottom: -10px;
+    height: 0.5px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+
+    @include tablet {
+        bottom: -20px;
+    }
+}
+
 // Toggle buttons
 
 .clock_toggle {
