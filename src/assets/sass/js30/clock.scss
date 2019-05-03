@@ -11,11 +11,21 @@
     border-radius: 50%;
     box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
         inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
-    height: 25rem;
+    height: 15rem;
     margin: 50px auto;
     padding: 2rem;
     position: relative;
-    width: 25rem;
+    width: 15rem;
+
+    @include breakpoint(320) {
+        height: 18rem;
+        width: 18rem;
+    }
+
+    @include tablet {
+        height: 25rem;
+        width: 25rem;
+    }
 }
 
 .clock-face {
@@ -68,24 +78,37 @@
     display: grid;
     grid-template-columns: 0.7fr auto 0.7fr auto 0.4fr;
     justify-content: space-around;
-    min-width: 360px;
+    min-width: 220px;
     padding: 2rem;
     text-align: center;
     width: 100%;
+
+    @include tablet {
+        min-width: 360px;
+    }
 }
 
 .hours,
 .minutes,
 .colon {
     color: #a4fe7c;
-    font-size: 4rem;
+    font-size: 2rem;
+
+    @include tablet {
+        font-size: 4rem;
+    }
 }
 
 .seconds,
 .colon--small {
     color: #a4fe7c;
-    font-size: 2rem;
-    margin-top: 0.8rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+
+    @include tablet {
+        font-size: 2rem;
+        margin-top: 0.8rem;
+    }
 }
 
 .digital-clock__alarm {
@@ -93,10 +116,14 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     top: -10px;
-    left: 120px;
+    left: 75px;
     height: 10px;
     position: absolute;
     width: 40%;
+
+    @include tablet {
+        left: 120px;
+    }
 }
 
 .digital-clock__footleft,
@@ -104,10 +131,15 @@
     background: #333333;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    bottom: -20px;
-    height: 20px;
+    bottom: -10px;
+    height: 10px;
     position: absolute;
     width: 25px;
+
+    @include tablet {
+        bottom: -20px;
+        height: 20px;
+    }
 }
 
 .digital-clock__footleft {
