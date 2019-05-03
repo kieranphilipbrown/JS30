@@ -13,10 +13,23 @@
                 <label for="base">Base Color</label>
                 <input id="base" type="color" name="base" value="#ffc600">
             </div>
-            <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+            <img class="d3__img" src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
         </div>
     </main>
     <script>
-        
+        const input = document.querySelectorAll(".controls input");
+
+        function handleUpdate() {
+
+            // 'dataset' is an object that will hold
+            // all the 'data-' attributes from that
+            // specific element.
+            const suffix = this.dataset.sizing || "";
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+        }
+
+        input.forEach(input => input.addEventListener("change", handleUpdate));
+        input.forEach(input => input.addEventListener("mousemove", handleUpdate));
+
     </script>
 {% endblock %}
