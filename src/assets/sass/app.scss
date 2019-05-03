@@ -1,6 +1,9 @@
 // Normalise
 @import "./vendor/normalise";
 
+// Mixins
+@import "./mixins/breakpoints";
+
 // Base
 @import "./base/variables";
 @import "./base/base";

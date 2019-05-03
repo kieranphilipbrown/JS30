@@ -1,0 +1,43 @@
+/*------------------*
+# Breakpoints
+*------------------*/
+
+$tablet-width: 768px !default;
+$desktop-width: 960px !default;
+
+// 2 main set breakpoints to be used across the site
+// to handle tablet and desktop widths
+
+@mixin tablet {
+    @media (min-width: #{$tablet-width}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+        @content;
+    }
+}
+
+/* Custom breakpoint mixin so that we're not fixed to just using mobile (anything below 768px),
+ * tablet (between 768px and 960px) and desktop (960px + ) breakpoints.
+ *
+ * Example of how to use:
+ *
+ * .header {
+ *   background: orange;
+ *
+ *   @include breakpoint(400) {
+ *       background: green;
+ *   }
+ *
+ * }
+ *
+*/
+
+@mixin breakpoint($breakpoint-value) {
+    @media (min-width: #{$breakpoint-value + 'px'}) {
+        @content;
+    }
+}
