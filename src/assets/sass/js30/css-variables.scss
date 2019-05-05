@@ -1,0 +1,32 @@
+/*------------------*
+# Day 2 - CSS Variables & JS
+*------------------*/
+
+:root {
+    --base: #574a3e;
+    --blur: 0;
+    --spacing: 50px;
+}
+
+.d3__img__container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+}
+
+.d3__img {
+    background: var(--base);
+    -webkit-box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+        0 8px 16px -8px rgba(0, 0, 0, 0.3),
+        0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+        0 8px 16px -8px rgba(0, 0, 0, 0.3),
+        0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+    filter: blur(var(--blur));
+    padding: var(--spacing);
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+}
