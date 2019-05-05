@@ -44,20 +44,22 @@
 
 
         
-    <main>
+    <main class="pad_top">
         <div class="content_width">
             <div class="d3__container">
-                <div class="controls">
-                    <label for="spacing">Spacing:</label>
-                    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
-
-                    <label for="blur">Blur:</label>
-                    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
-
-                    <label for="base">Base Color</label>
-                    <input id="base" type="color" name="base" value="#ffc600">
+                <div class="d3__img__container v_r">
+                    <img class="d3__img" src="images/highland-cow.jpeg">
                 </div>
-                <img class="d3__img" src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+                <div class="controls">
+                    <label for="spacing" class="v_r">Spacing (frame width):</label>
+                    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px" class="v_r">
+
+                    <label for="blur" class="v_r">Image Blur:</label>
+                    <input id="blur" type="range" name="blur" min="0" max="25" value="0" data-sizing="px" class="v_r">
+
+                    <label for="base" class="v_r">Frame Color</label>
+                    <input id="base" type="color" name="base" value="#574a3e" class="v_r">
+                </div>
             </div>
         </div>
     </main>
