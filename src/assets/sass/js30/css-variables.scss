@@ -12,6 +12,39 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 500px;
+    position: relative;
+}
+
+.d3__img__pin {
+    background: #a3a3a3;
+    border-radius: 50%;
+    height: 10px;
+    left: 245px;
+    position: absolute;
+    top: -70px;
+    width: 10px;
+    z-index: 10;
+}
+
+.d3__img__string-1,
+.d3__img__string-2 {
+    background: #dac647;
+    height: 1px;
+    position: absolute;
+    top: 0;
+    width: 52%;
+}
+
+.d3__img__string-1 {
+    transform: rotate(15deg);
+    transform-origin: right;
+    right: 0;
+}
+
+.d3__img__string-2 {
+    transform: rotate(-15deg);
+    transform-origin: left;
+    left: 0;
 }
 
 .d3__img {
