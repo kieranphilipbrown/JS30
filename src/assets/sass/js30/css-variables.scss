@@ -19,9 +19,12 @@
     background: #a3a3a3;
     border-radius: 50%;
     height: 10px;
-    left: 245px;
     position: absolute;
-    top: -70px;
+    left: 50%;
+    top: -10.25%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     width: 10px;
     z-index: 10;
 }
