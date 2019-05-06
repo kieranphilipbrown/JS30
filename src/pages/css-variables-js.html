@@ -1,28 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <main class="pad_top">
+    <main>
         <div class="content_width">
-            <div>
-                <div class="d3__container">
-                    <div class="d3__img__container v_r">
-                        <div class="d3__img__pin"></div>
-                        <div class="d3__img__string-1"></div>
-                        <div class="d3__img__string-2"></div>
-                        <img class="d3__img" src="images/highland-cow.jpeg">
-                    </div>
-                    <div class="controls">
-                        <label for="spacing" class="v_r">Spacing (frame width):</label>
-                        <input id="spacing" type="range" name="spacing" min="10" max="200" value="50" data-sizing="px" class="v_r">
-
-                        <label for="blur" class="v_r">Image Blur:</label>
-                        <input id="blur" type="range" name="blur" min="0" max="25" value="0" data-sizing="px" class="v_r">
-
-                        <label for="base" class="v_r">Frame Color</label>
-                        <input id="base" type="color" name="base" value="#574a3e" class="v_r">
-                    </div>
-                    <p><strong>Image:</strong> <em>'Highland Cow'</em> - Malham, Yorkshire Dales, UK. <a href="https://catherine.dev" target="_blank" rel="noopener">Catherine McDonough</a></p>
+            <div class="d3__container">
+                <div class="d3__img__container v_r">
+                    <div class="d3__img__pin"></div>
+                    <div class="d3__img__string-1"></div>
+                    <div class="d3__img__string-2"></div>
+                    <img class="d3__img" src="images/highland-cow.jpeg">
                 </div>
+                <div class="controls">
+                    <label for="spacing" class="v_r">Spacing (frame width):</label>
+                    <input id="spacing" type="range" name="spacing" min="10" max="200" value="50" data-sizing="px" class="v_r">
+
+                    <label for="blur" class="v_r">Image Blur:</label>
+                    <input id="blur" type="range" name="blur" min="0" max="25" value="0" data-sizing="px" class="v_r">
+
+                    <label for="base" class="v_r">Frame Color</label>
+                    <input id="base" type="color" name="base" value="#574a3e" class="v_r">
+                </div>
+                <p><strong>Image:</strong> <em>'Highland Cow'</em> - Malham, Yorkshire Dales, UK. <a href="https://catherine.dev" target="_blank" rel="noopener">Catherine McDonough</a></p>
             </div>
         </div>
     </main>

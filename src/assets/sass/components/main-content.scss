@@ -3,26 +3,15 @@
 *------------------*/
 
 main {
-    align-items: center;
     background: #f0db4f;
-    display: flex;
-    flex-direction: column;
     font-family: "Josefin Sans", sans-serif;
-    justify-content: center;
     min-height: calc(100vh - 56px);
+    padding: 8rem 0;
+    width: 100%;
 
     a {
         &:focus {
             @extend .focus;
         }
     }
-}
-
-.main_content {
-    align-items: center;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
 }
