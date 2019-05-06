@@ -45,12 +45,48 @@
 
 
         
-    <main>
+    <main class="pad_top">
         <div class="content_width">
             <h1>Array Cardio (1)</h1>
             <p>Check the console for the array results. Below is a few notes on some of the methods.</p>
-            <!-- <h3>.filter()</h3>
-            <p></p> -->
+            <div class="d4__card">
+                <h2>.filter()</h2>
+                <hr class="d4__hr">
+                <h4><em>The filter() method will create a new array with all elements that pass the test implemented by the provided function.</em></h4>
+                <p>Filter works by passing it a function which will loop over every single item in the array and decide whether or not to keep it.</p>
+                <p>In example 1 we pass in 'inventor' as the name we give each item that has been looped over.</p>
+                <p>We can then carry out some logic, hence if inventor.year greater than something return true. This will keep the instances of 'inventor' that pass that check. We can then console.table the result for easier reading.</p>
+            </div>
+            <div class="d4__card">
+                <h2>.map()</h2>
+                <hr class="d4__hr">
+                <h4><em>The map() method takes and array, does something with it and returns a new array with the same length.</em></h4>
+                <p>.map() will always return the same amount of items as you give it. Filter doesn't. Filter can take in 10 things and return 2.</p>
+                <p>In example 2 we loop through the inventors and create a new array with just the first and last names.</p>
+            </div>
+            <div class="d4__card">
+                <h2>.sort()</h2>
+                <hr class="d4__hr">
+                <h4><em>The sort() method takes does what it says on the tin and sorts things in a particular order.</em></h4>
+                <p>In example 3 we specify a function and pass in a and b (this can be anything i.e. firstPerson and secondPerson but many people use a and b for ease).</p>
+                <p>We next create some logic that says if a.year is greater than b.year return 1 else return -1. This basically moves the people/data up and down within the array.</p>
+            </div>
+            <div class="d4__card">
+                <h2>.reduce()</h2>
+                <hr class="d4__hr">
+                <h4><em>The reduce() method takes and array and returns a single value.</em></h4>
+                <p>In example 4 we loop over the inventors, passing in <strong>total</strong> and <strong>inventor</strong> to the function.</p>
+                <p>The total is referring to the actual total each time the loop runs.</p>
+                <p>A simple example is:</p>
+                <div class="code">
+                    const numbersArray = [1, 2, 3, 4];</br />
+                    const total = (accumulator, currentValue) => accumulator + currentValue;<br />
+                    console.log(numbersArray.reduce(total));<br />
+                    <br />
+                    // this should give us 10
+                </div>
+                <p>Here, accumulator will start at 0 and each loop currentValue in the array will be added until all values have been used and we should be left with the value 10.</p>
+            </div>
         </div>
     </main>
     <script>
@@ -84,6 +120,7 @@
             return true; // keep it.
         }
     });
+    console.table(fifteen);
 
     // This can be reduced however to smaller, more efficient code:
 
@@ -96,7 +133,7 @@
     // map will always return the same amount of items as you give it. Filter doesn't. Filter can take
     // in 10 things and return 2.
 
-    const fullNames = inventors.map(inventor => `${inventor.first} + ${inventor.last}`);
+    const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
 
     // Can either concatonate in a space or return backticks and use template stings.
     console.log(fullNames);
@@ -126,7 +163,7 @@
     const totalYears = inventors.reduce((total, inventor) => {
         return total + (inventor.passed - inventor.year);
     }, 0);
-    console.log(totalYears);
+    console.log("Total years = " + totalYears);
 
     // 5. Sort the inventors by years lived
     const oldest = inventors.sort(function(a, b) {
