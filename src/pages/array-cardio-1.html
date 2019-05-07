@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <main class="pad_top">
+    <main>
         <div class="content_width">
             <h1>Array Cardio (1)</h1>
             <p>Check the console for the array results. Below is a few notes on some of the methods.</p>
@@ -34,13 +34,13 @@
                 <p>In example 4 we loop over the inventors, passing in <strong>total</strong> and <strong>inventor</strong> to the function.</p>
                 <p>The total is referring to the actual total each time the loop runs.</p>
                 <p>A simple example is:</p>
-                <div class="code">
-                    const numbersArray = [1, 2, 3, 4];</br />
-                    const total = (accumulator, currentValue) => accumulator + currentValue;<br />
-                    console.log(numbersArray.reduce(total));<br />
-                    <br />
-                    // this should give us 10
-                </div>
+                <pre class="wp-block-code"><code>
+const numbersArray = [1, 2, 3, 4];
+const total = (accumulator, currentValue) => accumulator + currentValue;
+console.log(numbersArray.reduce(total));
+
+// this should give us 10
+                </code></pre>
                 <p>Here, accumulator will start at 0 and each loop currentValue in the array will be added until all values have been used and we should be left with the value 10.</p>
             </div>
         </div>

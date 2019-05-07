@@ -46,30 +46,52 @@
 
 
         
-    <main class="centre">
-        <div class="content_width">
-            <h1>JS30</h1>
-            <hr class="rule" />
-            <p>
-                Use the menu on the left to navigate to each of the days
-                examples.
-            </p>
-            <p>
-                Thanks to
-                <a href="https://twitter.com/wesbos">Wes Bos</a> for
-                prividing this free course at
-                <a href="https://javascript30.com/"
-                    >https://javascript30.com/.
-                </a>
-            </p>
-            <p>
-                Repo:
-                <a href="https://github.com/kieranphilipbrown/JS30"
-                    >https://github.com/kieranphilipbrown/JS30</a
-                >
-            </p>
+    <div>
+        <div class="panels">
+            <div class="panel panel1">
+                <p>Hey</p>
+                <p>Let's</p>
+                <p>Dance</p>
+            </div>
+            <div class="panel panel2">
+                <p>Give</p>
+                <p>Take</p>
+                <p>Receive</p>
+            </div>
+            <div class="panel panel3">
+                <p>Experience</p>
+                <p>It</p>
+                <p>Today</p>
+            </div>
+            <div class="panel panel4">
+                <p>Give</p>
+                <p>All</p>
+                <p>You can</p>
+            </div>
+            <div class="panel panel5">
+                <p>Life</p>
+                <p>In</p>
+                <p>Motion</p>
+            </div>
         </div>
-    </main>
+    </div>
+    <script>
+        const panels = document.querySelectorAll(".panel");
+
+        function toggleOpen() {
+            this.classList.toggle("open");
+        }
+
+        function toggleActive(e) {
+            if (e.propertyName.includes("flex")) {
+                this.classList.toggle("open-active");
+            }
+        }
+
+        panels.forEach(panel => panel.addEventListener("click", toggleOpen));
+        panels.forEach(panel => panel.addEventListener("transitionend", toggleActive));
+
+    </script>
 
 
         <footer>
