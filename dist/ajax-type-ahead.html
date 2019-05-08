@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>JS30 | Kieran Brown</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Josefin+Sans"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/app.css" />
+    </head>
+    <body>
+
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+    <div class="nav__header">
+        <span>Day:</span>
+        <a class="nav__button--close">Close</a>
+    </div>
+    <ul class="nav__list">
+        <li><a href="/" class="nav__item">Home</a></li>
+        <li><a href="/drum-kit.html" class="nav__item">1 - JS Drum Kit</a></li>
+        <li><a href="/css-and-js-clock.html" class="nav__item">2 - CSS & JS Clock</a></li>
+        <li><a href="/css-variables-js.html" class="nav__item">3 - CSS Variables & JS</a></li>
+        <li><a href="/array-cardio-1.html" class="nav__item">4 - Array Cardio (1)</a></li>
+        <li><a href="/flex-panels-gallery.html" class="nav__item">5 - Flex Panels Gallery</a></li>
+        <li><a href="/ajax-type-ahead.html" class="nav__item">6 - Ajax Type Ahead</a></li>
+    </ul>
+</nav>
+<div class="nav__overlay"></div>
+<a class="nav__button--open">
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+    >
+        <path
+            class="menu_line"
+            fill="#f9f9f9"
+            d="M3 18h12v-2H3v2zM3 6v2h18V6H3zm0 7h18v-2H3v2z"
+        />
+        <path fill="none" d="M0 0h24v24H0V0z" />
+    </svg>
+</a>
+
+
+        
+    <main>
+        <div class="content_width">
+            <form class="search-form">
+                <input type="text" class="search" placeholder="City or State">
+                <ul class="suggestions">
+                    <li>Filter for a city</li>
+                    <li>or a state</li>
+                </ul>
+            </form>
+        </div>
+    </main>
+    <script>
+        const endpoint = "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"; 
+
+        // Create an empty array
+        const cities = [];
+
+        // Search Input & Suggestions
+        const searchInput = document.querySelector(".search");
+        const suggestions = document.querySelector(".suggestions");
+
+        // New API to fetch data
+        // Similar to $jquery.getJSon
+        fetch(endpoint)
+            .then(blob => blob.json())
+            .then(data => cities.push(...data));
+
+        function findMatches(wordToMatch, cities) {
+            return cities.filter(place => {
+                // we need to figure out if the city or state matches what was searched.
+                const regex = new RegExp(wordToMatch, "gi");
+                return place.city.match(regex) || place.state.match(regex);
+            });
+        }
+
+        // Regex to insert commas into numbers
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        function displayMatches() {
+            const matchArray = findMatches(this.value, cities);
+            const html = matchArray.map(place => {
+                const regex = new RegExp(this.value, "gi");
+                const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
+                const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+                return `
+                    <li>
+                        <span class="name">${cityName}, ${stateName}</span>
+                        <span class="population">${numberWithCommas(place.population)}</span>
+                    </li>
+                `;
+            }).join("");
+            suggestions.innerHTML = html;
+        }
+
+        searchInput.addEventListener("change", displayMatches);
+        searchInput.addEventListener("keyup", displayMatches);
+
+    </script>
+
+
+        <footer>
+    <div class="content_width">
+        <p>Hosted on <a href="https://www.netlify.com/">Netlify</a></p>
+    </div>
+</footer>
+
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
