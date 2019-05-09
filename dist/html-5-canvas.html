@@ -49,26 +49,52 @@
 
 
         
-    <canvas id="draw" width="800" height="800"></canvas>
-    <label for="linewidth" class="v_r">Line Width:</label>
-    <input id="linewidth" type="range" name="linewidth" min="1" max="100" value="1" class="line_width v_r">
+    <div class="canvas_container">
+        <h1 id="draw_message" class="draw_message">Draw something!</h1>
+        <canvas id="draw" class="canvas_area" width="800" height="800"></canvas>
+        <div class="canvas_controls">
+            <label for="linewidth" class="v_r">Line Width:</label>
+            <input id="linewidth" type="range" name="linewidth" min="1" max="100" value="10" class="line_width v_r">
+            <label for="pencolor" class="v_r">Color</label>
+            <input id="pencolor" type="color" name="pencolor" value="#07aa07" class="v_r">
+            <svg width="59px" height="492px" viewBox="0 0 59 492" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <title>felt-tip</title>
+                <defs></defs>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="felt-tip" transform="translate(29.500000, 246.000000) rotate(-90.000000) translate(-29.500000, -246.000000) translate(-216.000000, 217.000000)">
+                        <g id="Group" fill="#D8D8D8">
+                            <path d="M3,0.0168244255 L360.167718,0.0168244255 C407.389239,-0.468022171 431,9.52636969 431,30 L0,28.7045898 L-8.8817842e-16,3.01682443 C-1.09108455e-15,1.35997018 1.34314575,0.0168244255 3,0.0168244255 Z" id="Path"></path>
+                            <path d="M3,28.0168244 L360.167718,28.0168244 C407.389239,27.5319778 431,37.5263697 431,58 L0,57.484375 L6.21724894e-15,31.0168244 C6.75013391e-15,29.3599702 1.34314575,28.0168244 3,28.0168244 Z" id="Path" transform="translate(215.500000, 43.000000) scale(1, -1) translate(-215.500000, -43.000000) "></path>
+                        </g>
+                        <polygon id="Path-2" fill="#D8D8D8" points="421 17 441.310547 17 441.310547 40.921875 421 40.921875"></polygon>
+                        <polygon id="felt-tip-color" fill="#07aa07" points="441 19 459.541992 19 490.728516 37.984375 441 37.984375"></polygon>
+                        <polygon id="Rectangle" fill="#FCFCFC" points="0 22.0593262 427 22.0593262 427 36.9743652 0 36.9743652"></polygon>
+                        <rect id="Rectangle-2" fill="#F3F3F3" x="427" y="24" width="14" height="11"></rect>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
     <script>
         const canvas = document.querySelector("#draw");
+        const drawMessage = document.querySelector("#draw_message");
         const ctx = canvas.getContext("2d");
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        winHeight = window.innerHeight;
+        correctHeight = winHeight - 56;
+        canvas.height = correctHeight;
         ctx.strokeStyle = "#07aa07";
         ctx.lineJoin = "round";
         ctx.lineCap = "round";
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 10;
 
         let isDrawing = false;
         let lastX = 0;
         let lastY = 0;
-        let lineW = ctx.lineWidth;
 
         function draw(e) {
             if (!isDrawing) return; // stop function running when user isn't mousin'in down.
+            drawMessage.style.display = "none";
             //console.log(e);
             ctx.beginPath();
             // start from
@@ -91,13 +117,16 @@
         canvas.addEventListener("mouseup", () => isDrawing = false);
         canvas.addEventListener("mouseout", () => isDrawing = false);
 
-        function lineWidthToggle() {
+        const input = document.querySelectorAll(".canvas_controls input");
+        const feltTip = document.querySelector("#felt-tip-color");
+
+        function handleUpdate() {
             ctx.lineWidth = this.value;
+            ctx.strokeStyle = this.value;
+            feltTip.style.fill = this.value;
         }
 
-        // Line width toggle
-        const lineWidth = document.querySelector(".line_width");
-        lineWidth.addEventListener("change", lineWidthToggle);
+        input.forEach(input => input.addEventListener("change", handleUpdate));
 
     </script>
 
