@@ -85,19 +85,19 @@
         canvas.addEventListener("mousedown", (e) => {
             isDrawing = true;
             [lastX, lastY] = [e.offsetX, e.offsetY];
+            lineW = ctx.lineWidth;
         });
         canvas.addEventListener("mousemove", draw);
         canvas.addEventListener("mouseup", () => isDrawing = false);
         canvas.addEventListener("mouseout", () => isDrawing = false);
 
-        function handleUpdate() {
-            console.log(this.value);
-            lineW = this.value;
+        function lineWidthToggle() {
+            ctx.lineWidth = this.value;
         }
 
         // Line width toggle
         const lineWidth = document.querySelector(".line_width");
-        lineWidth.addEventListener("change", handleUpdate);
+        lineWidth.addEventListener("change", lineWidthToggle);
 
     </script>
 
