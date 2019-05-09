@@ -6,7 +6,7 @@
         <canvas id="draw" class="canvas_area" width="800" height="800"></canvas>
         <div class="canvas_controls">
             <label for="linewidth" class="v_r">Line Width:</label>
-            <input id="linewidth" type="range" name="linewidth" min="1" max="100" value="10" class="line_width v_r">
+            <input id="linewidth" type="range" name="linewidth" min="1" max="99" value="10" class="line_width v_r">
             <label for="pencolor" class="v_r">Color</label>
             <input id="pencolor" type="color" name="pencolor" value="#07aa07" class="v_r">
             <svg width="59px" height="492px" viewBox="0 0 59 492" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -75,7 +75,7 @@
         function handleUpdate() {
             ctx.lineWidth = this.value;
             ctx.strokeStyle = this.value;
-            feltTip.style.fill = this.value;
+            feltTip.style.fill = this.value || "";
         }
 
         input.forEach(input => input.addEventListener("change", handleUpdate));
