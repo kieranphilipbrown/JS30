@@ -54,6 +54,7 @@
         <h1 id="draw_message" class="draw_message">Draw something!</h1>
         <canvas id="draw" class="canvas_area" width="800" height="800"></canvas>
         <div class="canvas_controls">
+            <button class="canvas_clear v_r">Clear Canvas</button>
             <label for="linewidth" class="v_r">Line Width:</label>
             <input id="linewidth" type="range" name="linewidth" min="1" max="99" value="10" class="line_width v_r">
             <label for="pencolor" class="v_r">Color</label>
@@ -126,6 +127,13 @@
             ctx.strokeStyle = this.value;
             feltTip.style.fill = this.value || "";
         }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        const clearButton = document.querySelector(".canvas_clear");
+        clearButton.addEventListener("click", clearCanvas);
 
         input.forEach(input => input.addEventListener("change", handleUpdate));
 
