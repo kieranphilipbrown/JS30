@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>JS30 | Kieran Brown</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Josefin+Sans"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/app.css" />
+    </head>
+    <body>
+
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+    <div class="nav__header">
+        <span>Day:</span>
+        <a class="nav__button--close">Close</a>
+    </div>
+    <ul class="nav__list">
+        <li><a href="/" class="nav__item">Home</a></li>
+        <li><a href="/drum-kit.html" class="nav__item">1 - JS Drum Kit</a></li>
+        <li><a href="/css-and-js-clock.html" class="nav__item">2 - CSS & JS Clock</a></li>
+        <li><a href="/css-variables-js.html" class="nav__item">3 - CSS Variables & JS</a></li>
+        <li><a href="/array-cardio-1.html" class="nav__item">4 - Array Cardio (1)</a></li>
+        <li><a href="/flex-panels-gallery.html" class="nav__item">5 - Flex Panels Gallery</a></li>
+        <li><a href="/ajax-type-ahead.html" class="nav__item">6 - Ajax Type Ahead</a></li>
+        <li><a href="/array-cardio-2.html" class="nav__item">7 - Array Cardio (2)</a></li>
+        <li><a href="/html-5-canvas.html" class="nav__item">8 - HTML Canvas</a></li>
+        <li><a href="/dev-tools-tips.html" class="nav__item">9 - Dev Tools Tips</a></li>
+    </ul>
+</nav>
+<div class="nav__overlay"></div>
+<a class="nav__button--open">
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+    >
+        <path
+            class="menu_line"
+            fill="#f9f9f9"
+            d="M3 18h12v-2H3v2zM3 6v2h18V6H3zm0 7h18v-2H3v2z"
+        />
+        <path fill="none" d="M0 0h24v24H0V0z" />
+    </svg>
+</a>
+
+
+        
+    <main>
+        <div class="content_width">
+            <h1>Dev Tools Tips</h1>
+            <div class="d4__card">
+                <h2>console.log() tips</h2>
+                <hr class="d4__hr">
+                <p>A few handy to know console.log tips. Check the console for the outputs.</p>
+                <pre class="wp-block-code"><code>
+const dogs = [
+    { name: "Snickers", age: 2 },
+    { name: "hugo", age: 8 }
+];
+
+function makeGreen() {
+    const p = document.querySelector("p");
+    p.style.color = "#BADA55";
+    p.style.fontSize = "50px";
+}
+
+// Regular
+console.log("hello");
+
+// Interpolated
+console.log("Hi, this is a %s string!", "💩");
+// second argument will be interpolated into string.
+// or we could use backticks
+const variable = "pretty cool string";
+console.log(`This is a ${variable}`);
+
+// Styled
+console.log(
+    "%c This will alter text size and colour.",
+    "font-size: 50px; color: green;"
+);
+
+// warning!
+console.warn("ohh nooo");
+
+// Error :|
+console.error("Sorry, there was an error");
+
+// Info
+console.info("this should be very informative");
+
+// Testing
+console.assert(1 === 1, "This is very much true");
+// This will ONLY fire if something is WRONG!
+console.assert(1 === 2, "this will show up!");
+
+// clearing
+console.clear();
+
+// Viewing DOM Elements
+const p = document.querySelector("p");
+console.log(p);
+console.dir(p);
+// If you want to see all the methods that live on that object, open up
+// __proto__ (prototype)
+console.clear();
+
+// Grouping together
+dogs.forEach(dog => {
+    console.group(`${dog.name}`);
+    console.log(`This is ${dog.name}`);
+    console.log(`${dog.name} is ${dog.age} years old`);
+    console.log(`${dog.name} is ${dog.age * 7} in dog years`);
+    console.groupEnd(`${dog.name}`);
+});
+
+// counting
+console.count("Kieran");
+console.count("Kieran");
+console.count("Catherine");
+console.count("Kieran");
+console.count("Catherine");
+console.count("Catherine");
+                </code></pre>
+            </div>
+            <div class="d4__card">
+                <h2>.time() & .fetch()</h2>
+                <hr class="d4__hr">
+                <h4>A bit of info from GitHub retrieved with the fetch() method.</h4>
+                <img src="" class="github_image" alt=""/>
+                <p class="github_bold">
+                    Name: <span class="github_name"></span>
+                </p>
+                <p class="github_bold">
+                    Bio: <span class="github_bio"></span></p>
+                <p class="github_bold">
+                    Blog: <a href="" class="github_blog__link"><span class="github_blog"></span></a></p>
+            </div>
+        </div>
+    </main>
+    <script>
+        const dogs = [
+            { name: "Snickers", age: 2 },
+            { name: "hugo", age: 8 }
+        ];
+
+        function makeGreen() {
+            const p = document.querySelector("p");
+            p.style.color = "#BADA55";
+            p.style.fontSize = "50px";
+        }
+
+        // Regular
+        console.log("hello");
+
+        // Interpolated
+        console.log("Hi, this is a %s string!", "💩");
+        // second argument will be interpolated into string.
+        // or we could use backticks
+        const variable = "pretty cool string";
+        console.log(`This is a ${variable}`);
+
+        // Styled
+        console.log(
+            "%c This will alter text size and colour.",
+            "font-size: 50px; color: green;"
+        );
+
+        // warning!
+        console.warn("ohh nooo");
+
+        // Error :|
+        console.error("Sorry, there was an error");
+
+        // Info
+        console.info("this should be very informative");
+
+        // Testing
+        console.assert(1 === 1, "This is very much true");
+        // This will ONLY fire if something is WRONG!
+        console.assert(1 === 2, "this will show up!");
+
+        // clearing
+        console.clear();
+
+        // Viewing DOM Elements
+        const p = document.querySelector("p");
+        console.log(p);
+        console.dir(p);
+        // If you want to see all the methods that live on that object, open up
+        // __proto__ (prototype)
+        console.clear();
+
+        // Grouping together
+        dogs.forEach(dog => {
+            console.group(`${dog.name}`);
+            console.log(`This is ${dog.name}`);
+            console.log(`${dog.name} is ${dog.age} years old`);
+            console.log(`${dog.name} is ${dog.age * 7} in dog years`);
+            console.groupEnd(`${dog.name}`);
+        });
+
+        // counting
+        console.count("Kieran");
+        console.count("Kieran");
+        console.count("Catherine");
+        console.count("Kieran");
+        console.count("Catherine");
+        console.count("Catherine");
+
+        // timing
+        console.time("Fetching data");
+        fetch("https://api.github.com/users/kieranphilipbrown")
+            .then(data => data.json())
+            .then(data => {
+                console.timeEnd("Fetching data");
+                console.log(data);
+                console.log(data.blog);
+                document.querySelector(".github_image").src = data.avatar_url;
+                document.querySelector(".github_image").alt = data.name;
+                document.querySelector(".github_name").innerHTML = data.name;
+                document.querySelector(".github_bio").innerHTML = data.bio;
+                document.querySelector(".github_blog").innerHTML = data.blog;
+                document.querySelector(".github_blog__link").href = data.blog;
+            });
+
+        // table
+        console.table(dogs);
+    </script>
+
+
+        <footer>
+    <div class="content_width">
+        <p>Hosted on <a href="https://www.netlify.com/">Netlify</a></p>
+    </div>
+</footer>
+
+
+        <script src="js/main.js"></script>
+    </body>
+</html>

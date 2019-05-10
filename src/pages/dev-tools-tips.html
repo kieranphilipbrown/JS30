@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main>
+        <div class="content_width">
+            <h1>Dev Tools Tips</h1>
+            <div class="d4__card">
+                <h2>console.log() tips</h2>
+                <hr class="d4__hr">
+                <p>A few handy to know console.log tips. Check the console for the outputs.</p>
+                <pre class="wp-block-code"><code>
+const dogs = [
+    { name: "Snickers", age: 2 },
+    { name: "hugo", age: 8 }
+];
+
+function makeGreen() {
+    const p = document.querySelector("p");
+    p.style.color = "#BADA55";
+    p.style.fontSize = "50px";
+}
+
+// Regular
+console.log("hello");
+
+// Interpolated
+console.log("Hi, this is a %s string!", "💩");
+// second argument will be interpolated into string.
+// or we could use backticks
+const variable = "pretty cool string";
+console.log(`This is a ${variable}`);
+
+// Styled
+console.log(
+    "%c This will alter text size and colour.",
+    "font-size: 50px; color: green;"
+);
+
+// warning!
+console.warn("ohh nooo");
+
+// Error :|
+console.error("Sorry, there was an error");
+
+// Info
+console.info("this should be very informative");
+
+// Testing
+console.assert(1 === 1, "This is very much true");
+// This will ONLY fire if something is WRONG!
+console.assert(1 === 2, "this will show up!");
+
+// clearing
+console.clear();
+
+// Viewing DOM Elements
+const p = document.querySelector("p");
+console.log(p);
+console.dir(p);
+// If you want to see all the methods that live on that object, open up
+// __proto__ (prototype)
+console.clear();
+
+// Grouping together
+dogs.forEach(dog => {
+    console.group(`${dog.name}`);
+    console.log(`This is ${dog.name}`);
+    console.log(`${dog.name} is ${dog.age} years old`);
+    console.log(`${dog.name} is ${dog.age * 7} in dog years`);
+    console.groupEnd(`${dog.name}`);
+});
+
+// counting
+console.count("Kieran");
+console.count("Kieran");
+console.count("Catherine");
+console.count("Kieran");
+console.count("Catherine");
+console.count("Catherine");
+                </code></pre>
+            </div>
+            <div class="d4__card">
+                <h2>.time() & .fetch()</h2>
+                <hr class="d4__hr">
+                <h4>A bit of info from GitHub retrieved with the fetch() method.</h4>
+                <img src="" class="github_image" alt=""/>
+                <p class="github_bold">
+                    Name: <span class="github_name"></span>
+                </p>
+                <p class="github_bold">
+                    Bio: <span class="github_bio"></span></p>
+                <p class="github_bold">
+                    Blog: <a href="" class="github_blog__link"><span class="github_blog"></span></a></p>
+            </div>
+        </div>
+    </main>
+    <script>
+        const dogs = [
+            { name: "Snickers", age: 2 },
+            { name: "hugo", age: 8 }
+        ];
+
+        function makeGreen() {
+            const p = document.querySelector("p");
+            p.style.color = "#BADA55";
+            p.style.fontSize = "50px";
+        }
+
+        // Regular
+        console.log("hello");
+
+        // Interpolated
+        console.log("Hi, this is a %s string!", "💩");
+        // second argument will be interpolated into string.
+        // or we could use backticks
+        const variable = "pretty cool string";
+        console.log(`This is a ${variable}`);
+
+        // Styled
+        console.log(
+            "%c This will alter text size and colour.",
+            "font-size: 50px; color: green;"
+        );
+
+        // warning!
+        console.warn("ohh nooo");
+
+        // Error :|
+        console.error("Sorry, there was an error");
+
+        // Info
+        console.info("this should be very informative");
+
+        // Testing
+        console.assert(1 === 1, "This is very much true");
+        // This will ONLY fire if something is WRONG!
+        console.assert(1 === 2, "this will show up!");
+
+        // clearing
+        console.clear();
+
+        // Viewing DOM Elements
+        const p = document.querySelector("p");
+        console.log(p);
+        console.dir(p);
+        // If you want to see all the methods that live on that object, open up
+        // __proto__ (prototype)
+        console.clear();
+
+        // Grouping together
+        dogs.forEach(dog => {
+            console.group(`${dog.name}`);
+            console.log(`This is ${dog.name}`);
+            console.log(`${dog.name} is ${dog.age} years old`);
+            console.log(`${dog.name} is ${dog.age * 7} in dog years`);
+            console.groupEnd(`${dog.name}`);
+        });
+
+        // counting
+        console.count("Kieran");
+        console.count("Kieran");
+        console.count("Catherine");
+        console.count("Kieran");
+        console.count("Catherine");
+        console.count("Catherine");
+
+        // timing
+        console.time("Fetching data");
+        fetch("https://api.github.com/users/kieranphilipbrown")
+            .then(data => data.json())
+            .then(data => {
+                console.timeEnd("Fetching data");
+                console.log(data);
+                console.log(data.blog);
+                document.querySelector(".github_image").src = data.avatar_url;
+                document.querySelector(".github_image").alt = data.name;
+                document.querySelector(".github_name").innerHTML = data.name;
+                document.querySelector(".github_bio").innerHTML = data.bio;
+                document.querySelector(".github_blog").innerHTML = data.blog;
+                document.querySelector(".github_blog__link").href = data.blog;
+            });
+
+        // table
+        console.table(dogs);
+    </script>
+{% endblock %}
