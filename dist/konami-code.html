@@ -53,25 +53,42 @@
 
 
         
-    <main>
+    <main class="konami_main">
         <div class="content_width">
-            <h1>Konami Code</h1>
-            <p class="correct">That's right</p>
+            <div class="konami_container">
+                <h1>Konami Code</h1>
+                <h4>What is it?</h4>
+                <p>Konami Code is a cheat code that appears in many Konami video games, and some non-Konami games. The player can press the following sequence of buttons on the game controller to enable a cheat or other effects:</p>
+                <p>↑↑↓↓←→←→BA</p>
+                <h4>Hint for Konami code on this page:</h4>
+                <p class="konami_hint">Type a word that's relevant for this course.</p>
+            </div>
+            <div class="konami_container__correct">
+                <div style="display: inline-block;">
+                    <h2>That is correct.</h2>
+                </div>
+            </div>
         </div>
     </main>
     <script>
 
         const pressed = [];
         const secretCode = "javascript";
-        const correctMessage = document.querySelector(".correct");
+        const correctMessage = document.querySelector(".konami_correct");
+        const konamiContainer = document.querySelector(".konami_container");
+        const konamiContainerCorrect = document.querySelector(".konami_container__correct");
+        const mainBody = document.querySelector("main");
 
         window.addEventListener("keyup", (e) => {
             console.log(e.key);
             pressed.push(e.key);
             pressed.splice(-secretCode.lenght -1, pressed.length - secretCode.length);
             if (pressed.join("").includes(secretCode)) {
-                console.log('nice one');
-                correctMessage.style.display = "block";
+                mainBody.style.backgroundColor = "black";
+                konamiContainer.style.display = "none";
+                setTimeout(function(){
+                    konamiContainerCorrect.style.display = "flex";
+                }, 1000);
             }
             console.log(pressed);
 
