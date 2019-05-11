@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>JS30 | Kieran Brown</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Josefin+Sans"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/app.css" />
+    </head>
+    <body>
+
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+    <div class="nav__header">
+        <span>Day:</span>
+        <a class="nav__button--close">Close</a>
+    </div>
+    <ul class="nav__list">
+        <li><a href="/" class="nav__item">Home</a></li>
+        <li><a href="/drum-kit.html" class="nav__item">1 - JS Drum Kit</a></li>
+        <li><a href="/css-and-js-clock.html" class="nav__item">2 - CSS & JS Clock</a></li>
+        <li><a href="/css-variables-js.html" class="nav__item">3 - CSS Variables & JS</a></li>
+        <li><a href="/array-cardio-1.html" class="nav__item">4 - Array Cardio (1)</a></li>
+        <li><a href="/flex-panels-gallery.html" class="nav__item">5 - Flex Panels Gallery</a></li>
+        <li><a href="/ajax-type-ahead.html" class="nav__item">6 - Ajax Type Ahead</a></li>
+        <li><a href="/array-cardio-2.html" class="nav__item">7 - Array Cardio (2)</a></li>
+        <li><a href="/html-5-canvas.html" class="nav__item">8 - HTML Canvas</a></li>
+        <li><a href="/dev-tools-tips.html" class="nav__item">9 - Dev Tools Tips</a></li>
+        <li><a href="/hold-shift-to-check-multiple-checkboxes.html" class="nav__item">10 - Shift to Check Checkboxes</a></li>
+    </ul>
+</nav>
+<div class="nav__overlay"></div>
+<a class="nav__button--open">
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+    >
+        <path
+            class="menu_line"
+            fill="#f9f9f9"
+            d="M3 18h12v-2H3v2zM3 6v2h18V6H3zm0 7h18v-2H3v2z"
+        />
+        <path fill="none" d="M0 0h24v24H0V0z" />
+    </svg>
+</a>
+
+
+        
+    <main>
+        <div class="content_width">
+            <div class="d10__inbox">
+                <div class="d10__item">
+                    <input type="checkbox">
+                    <p>This is an inbox layout.</p>
+                </div>
+                <div class="d10__item">
+                    <input type="checkbox">
+                    <p>Check one item</p>
+                </div>
+                <div class="d10__item">
+                    <input type="checkbox">
+                    <p>Hold down your Shift key</p>
+                </div>
+                <div class="d10__item">
+                    <input type="checkbox">
+                    <p>Check a lower item</p>
+                </div>
+                <div class="d10__item">
+                    <input type="checkbox">
+                    <p>Everything in between should also be set to checked</p>
+                </div>
+                <div class="d10__item">
+                    <input type="checkbox">
+                    <p>Try to do it without any libraries</p>
+                </div>
+                <div class="d10__item">
+                    <input type="checkbox">
+                    <p>Just regular JavaScript</p>
+                </div>
+                <div class="d10__item">
+                    <input type="checkbox">
+                    <p>Good Luck!</p>
+                </div>
+                <div class="d10__item">
+                    <input type="checkbox">
+                    <p>Don't forget to tweet your result!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        const checkboxes = document.querySelectorAll(`.d10__inbox input[type="checkbox"]`);
+
+        // Using let as it will be reassigned later.
+        let lastChecked;
+
+        function handleCheck(e) {
+            // check if user had shift key down
+            // AND check that they are checking it
+            let inBetween = false;
+            if (e.shiftKey && this.checked) {
+                // do what we want
+                // loop over every single checkbox
+                checkboxes.forEach(checkbox => {
+                    console.log(checkbox)
+                    if (checkbox === this || checkbox === lastChecked) {
+                        inBetween = !inBetween;
+                        console.log("Starting to check INBETWEEN!");
+                    }
+
+                    if (inBetween) {
+                        checkbox.checked = true;
+                    }
+                });
+            }
+            lastChecked = this;
+        }
+
+        checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleCheck));
+    </script>
+
+
+        <footer>
+    <div class="content_width">
+        <p>Hosted on <a href="https://www.netlify.com/">Netlify</a></p>
+    </div>
+</footer>
+
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
