@@ -66,13 +66,108 @@
                     <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1">
                     <button data-skip="-10" class="player__button">« 10s</button>
                     <button data-skip="25" class="player__button">25s »</button>
+                    <button class="player__button full_screen">FS</button>
+                    <button class="player__button full_screen_exit">FSE</button>
                 </div>
             </div>
         </div>
     </main>
-    <!-- This JS file can be found at src > assets > js > video-player.js -->
-    <!-- Gulp will compress this into main.js when built -->
-    <script src="js/main.js"></script>
+    <script>
+        // Get elements
+        const player = document.querySelector(".player");
+        const video = player.querySelector(".viewer");
+        const progress = player.querySelector(".progress");
+        const progressBar = player.querySelector(".progress__filled");
+        const toggle = player.querySelector(".toggle");
+        const skipButtons = player.querySelectorAll("[data-skip]");
+        const ranges = player.querySelectorAll(".player__slider");
+        const fullScreenButton = player.querySelector(".full_screen");
+        const exitFullScreenButton = player.querySelector(".full_screen_exit");
+
+        // Toggle video player
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        // Update play button
+        function updateButton() {
+            const icon = this.paused ? '►' : '❚ ❚';
+            console.log(icon);
+            toggle.textContent = icon;
+        }
+
+        // Skip controls
+        function skip() {
+            console.log("Skipping");
+            console.log(this.dataset.skip);
+            // currently a string so we need to parseFloat to convert to integer
+            video.currentTime += parseFloat(this.dataset.skip);
+        }
+
+        // Range update
+        function handleRangeUpdate() {
+            video[this.name] = this.value;
+        }
+
+        // Video progess
+        function handleProgress() {
+            const percent = (video.currentTime / video.duration) * 100;
+            progressBar.style.flexBasis = `${percent}%`;
+        }
+
+        // Scrub
+        function scrub(e) {
+            console.log(e);
+            const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+            video.currentTime = scrubTime;
+        }
+
+        // Fullscreen
+        function fullScreen() {
+            player.requestFullscreen();
+            fullScreenButton.style.display = "none";
+            exitFullScreenButton.style.display = "block";
+        }
+
+        function outOfFullScreen() {
+            document.exitFullscreen();
+            exitFullScreenButton.style.display = "none";
+            fullScreenButton.style.display = "block";
+        }
+
+        // Event listeners
+        video.addEventListener("click", togglePlay);
+        video.addEventListener("play", updateButton);
+        video.addEventListener("pause", updateButton);
+        video.addEventListener("timeupdate", handleProgress);
+
+        toggle.addEventListener("click", togglePlay);
+        skipButtons.forEach(button => button.addEventListener("click", skip));
+        ranges.forEach(range => range.addEventListener("change", handleRangeUpdate));
+        ranges.forEach(range => range.addEventListener("mousemove", handleProgress));
+
+        fullScreenButton.addEventListener("click", fullScreen);
+        exitFullScreenButton.addEventListener("click", outOfFullScreen);
+
+        let mousedown = false;
+        progress.addEventListener("click", scrub);
+        // progress.addEventListener("mousemove", (e) => {
+        //     if (mousedown) {
+        //         scrub(e);
+        //     }
+        // });
+        // above is the easy to read way to check if mousedown then run scrub() function.
+        // below is basically saying if mousedown is true move on to scrub function
+        // if the mousedown is false scrub won't run, it will just return.
+        progress.addEventListener("mousemove", (e) => mousedown && scrub(e));
+        progress.addEventListener("mousedown", () => mousedown = true);
+        progress.addEventListener("mouseup", () => mousedown = false);
+
+    </script>
 
 
         <footer>

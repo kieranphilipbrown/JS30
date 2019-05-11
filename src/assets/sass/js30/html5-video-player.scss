@@ -29,13 +29,15 @@
 .player__button {
     background: none;
     border: 0;
-    line-height: 1;
     color: white;
-    text-align: center;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: initial;
+    line-height: 1;
+    max-width: 50px;
     outline: 0;
     padding: 0;
-    cursor: pointer;
-    max-width: 50px;
+    text-align: center;
 }
 
 .player__button:focus {
@@ -84,8 +86,12 @@
 .progress__filled {
     background: #ffc600;
     flex: 0;
-    flex-basis: 50%;
-    width: 50%;
+    flex-basis: 0;
+    width: 0;
+}
+
+.full_screen_exit {
+    display: none;
 }
 
 .player {
