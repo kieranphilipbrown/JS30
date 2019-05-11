@@ -3,12 +3,20 @@
 *------------------*/
 
 .player {
-    max-width: 750px;
+    align-items: center;
     border: 5px solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    position: relative;
+    display: flex;
+    flex-direction: column;
     font-size: 0;
+    justify-content: center;
+    max-width: 750px;
+    position: relative;
     overflow: hidden;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 /* This css is only applied when fullscreen is active. */
@@ -92,6 +100,18 @@
 
 .full_screen_exit {
     display: none;
+}
+
+.player__play_button {
+    align-items: center;
+    background: #ffc600;
+    border-radius: 50%;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    position: absolute;
+    transition: 0.4s ease;
+    width: 80px;
 }
 
 .player {
