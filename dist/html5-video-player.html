@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>JS30 | Kieran Brown</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Josefin+Sans"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/app.css" />
+    </head>
+    <body>
+
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
+    <div class="nav__header">
+        <span>Day:</span>
+        <a class="nav__button--close">Close</a>
+    </div>
+    <ul class="nav__list">
+        <li><a href="/" class="nav__item">Home</a></li>
+        <li><a href="/drum-kit.html" class="nav__item">1 - JS Drum Kit</a></li>
+        <li><a href="/css-and-js-clock.html" class="nav__item">2 - CSS & JS Clock</a></li>
+        <li><a href="/css-variables-js.html" class="nav__item">3 - CSS Variables & JS</a></li>
+        <li><a href="/array-cardio-1.html" class="nav__item">4 - Array Cardio (1)</a></li>
+        <li><a href="/flex-panels-gallery.html" class="nav__item">5 - Flex Panels Gallery</a></li>
+        <li><a href="/ajax-type-ahead.html" class="nav__item">6 - Ajax Type Ahead</a></li>
+        <li><a href="/array-cardio-2.html" class="nav__item">7 - Array Cardio (2)</a></li>
+        <li><a href="/html-5-canvas.html" class="nav__item">8 - HTML Canvas</a></li>
+        <li><a href="/dev-tools-tips.html" class="nav__item">9 - Dev Tools Tips</a></li>
+        <li><a href="/hold-shift-to-check-multiple-checkboxes.html" class="nav__item">10 - Shift to Check Checkboxes</a></li>
+        <li><a href="/html5-video-player.html" class="nav__item">11 - HTML5 Video Player</a></li>
+    </ul>
+</nav>
+<div class="nav__overlay"></div>
+<a class="nav__button--open">
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+    >
+        <path
+            class="menu_line"
+            fill="#f9f9f9"
+            d="M3 18h12v-2H3v2zM3 6v2h18V6H3zm0 7h18v-2H3v2z"
+        />
+        <path fill="none" d="M0 0h24v24H0V0z" />
+    </svg>
+</a>
+
+
+        
+    <main class="centre">
+        <div class="content_width">
+            <div class="player">
+                <div class="player__play_button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+                </div>
+                <video class="player__video viewer" src="videos/652333414.mp4"></video>
+
+                <div class="player__controls">
+                    <div class="progress">
+                        <div class="progress__filled"></div>
+                    </div>
+                    <button class="player__button toggle" title="Toggle Play">►</button>
+                    <input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1">
+                    <input type="range" name="playbackRate" class="player__slider" min="0.5" max="2" step="0.1" value="1">
+                    <button data-skip="-10" class="player__button">« 10s</button>
+                    <button data-skip="25" class="player__button">25s »</button>
+                    <button class="player__button full_screen"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="#ffc600" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg></button>
+                    <button class="player__button full_screen_exit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path fill="#ffc600" d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg></button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Get elements
+        const player = document.querySelector(".player");
+        const playerPlayCircle = document.querySelector(".player__play_button");
+        const video = player.querySelector(".viewer");
+        const progress = player.querySelector(".progress");
+        const progressBar = player.querySelector(".progress__filled");
+        const toggle = player.querySelector(".toggle");
+        const skipButtons = player.querySelectorAll("[data-skip]");
+        const ranges = player.querySelectorAll(".player__slider");
+        const fullScreenButton = player.querySelector(".full_screen");
+        const exitFullScreenButton = player.querySelector(".full_screen_exit");
+
+        // Toggle video player
+        function togglePlay() {
+            if (video.paused) {
+                playerPlayCircle.style.opacity = 0;
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        // Update play button
+        function updateButton() {
+            const icon = this.paused ? '►' : '❚ ❚';
+            console.log(icon);
+            toggle.textContent = icon;
+        }
+
+        // Skip controls
+        function skip() {
+            console.log("Skipping");
+            console.log(this.dataset.skip);
+            // currently a string so we need to parseFloat to convert to integer
+            video.currentTime += parseFloat(this.dataset.skip);
+        }
+
+        // Range update
+        function handleRangeUpdate() {
+            video[this.name] = this.value;
+        }
+
+        // Video progess
+        function handleProgress() {
+            const percent = (video.currentTime / video.duration) * 100;
+            progressBar.style.flexBasis = `${percent}%`;
+        }
+
+        // Scrub
+        function scrub(e) {
+            console.log(e);
+            const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+            video.currentTime = scrubTime;
+        }
+
+        // Fullscreen
+        function fullScreen() {
+            player.requestFullscreen();
+            fullScreenButton.style.display = "none";
+            exitFullScreenButton.style.display = "block";
+        }
+
+        function outOfFullScreen() {
+            document.exitFullscreen();
+            exitFullScreenButton.style.display = "none";
+            fullScreenButton.style.display = "block";
+        }
+
+        // Event listeners
+        video.addEventListener("click", togglePlay);
+        video.addEventListener("play", updateButton);
+        video.addEventListener("pause", updateButton);
+        video.addEventListener("timeupdate", handleProgress);
+
+        toggle.addEventListener("click", togglePlay);
+        skipButtons.forEach(button => button.addEventListener("click", skip));
+        ranges.forEach(range => range.addEventListener("change", handleRangeUpdate));
+        ranges.forEach(range => range.addEventListener("mousemove", handleProgress));
+
+        fullScreenButton.addEventListener("click", fullScreen);
+        exitFullScreenButton.addEventListener("click", outOfFullScreen);
+
+        let mousedown = false;
+        progress.addEventListener("click", scrub);
+        // progress.addEventListener("mousemove", (e) => {
+        //     if (mousedown) {
+        //         scrub(e);
+        //     }
+        // });
+        // above is the easy to read way to check if mousedown then run scrub() function.
+        // below is basically saying if mousedown is true move on to scrub function
+        // if the mousedown is false scrub won't run, it will just return.
+        progress.addEventListener("mousemove", (e) => mousedown && scrub(e));
+        progress.addEventListener("mousedown", () => mousedown = true);
+        progress.addEventListener("mouseup", () => mousedown = false);
+
+    </script>
+
+
+        <footer>
+    <div class="content_width">
+        <p>Hosted on <a href="https://www.netlify.com/">Netlify</a></p>
+    </div>
+</footer>
+
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
