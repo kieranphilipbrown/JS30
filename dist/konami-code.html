@@ -56,9 +56,26 @@
     <main>
         <div class="content_width">
             <h1>Konami Code</h1>
+            <p class="correct">That's right</p>
         </div>
     </main>
     <script>
+
+        const pressed = [];
+        const secretCode = "javascript";
+        const correctMessage = document.querySelector(".correct");
+
+        window.addEventListener("keyup", (e) => {
+            console.log(e.key);
+            pressed.push(e.key);
+            pressed.splice(-secretCode.lenght -1, pressed.length - secretCode.length);
+            if (pressed.join("").includes(secretCode)) {
+                console.log('nice one');
+                correctMessage.style.display = "block";
+            }
+            console.log(pressed);
+
+        });
     </script>
 
 
