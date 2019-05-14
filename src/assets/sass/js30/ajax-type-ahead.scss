@@ -2,29 +2,32 @@
 # Day 6 - Ajax Type Ahead
 *------------------*/
 
-input {
-    padding: 20px;
-    width: 100%;
+.d6 {
+    input {
+        padding: 20px;
+        width: 100%;
+    }
+
+    input.search {
+        border: 10px solid #f7f7f7;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.12),
+            inset 0 0 2px rgba(0, 0, 0, 0.19);
+        font-size: 40px;
+        left: -10%;
+        margin: 0;
+        outline: 0;
+        position: relative;
+        text-align: center;
+        top: 10px;
+        width: 120%;
+        z-index: 2;
+    }
 }
 
 .search-form {
     margin: 50px auto;
     max-width: 400px;
-}
-
-input.search {
-    border: 10px solid #f7f7f7;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
-    font-size: 40px;
-    left: -10%;
-    margin: 0;
-    outline: 0;
-    position: relative;
-    text-align: center;
-    top: 10px;
-    width: 120%;
-    z-index: 2;
 }
 
 .suggestions {
