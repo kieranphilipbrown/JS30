@@ -1,0 +1,40 @@
+/*------------------*
+# Day 13 - Slide In On Scroll
+*------------------*/
+
+.site-wrap {
+    background: white;
+    margin: 100px auto;
+    max-width: 700px;
+    padding: 40px;
+}
+
+.align-left {
+    float: left;
+    margin-bottom: 20px;
+    margin-right: 40px;
+}
+
+.align-right {
+    float: right;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+.slide-in {
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.align-left.slide-in {
+    transform: translateX(-30%) scale(0.95);
+}
+
+.align-right.slide-in {
+    transform: translateX(30%) scale(0.95);
+}
+
+.slide-in.active {
+    opacity: 1;
+    transform: translateX(0%) scale(1);
+}
