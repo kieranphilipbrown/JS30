@@ -86,3 +86,9 @@
     outline: 0;
     padding: 10px;
 }
+
+.add-items input[type="submit"]:hover,
+.clear-all:hover {
+    background: #f0da4f;
+    cursor: pointer;
+}
