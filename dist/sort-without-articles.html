@@ -66,6 +66,38 @@
     </main>
     <script>
         const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+
+        function strip(bandName) {
+            // we can add "an" "the" to the replace but we can use regex to replace all in one go
+            // REGEX NOTES:
+            // ^ means starts with
+            // i means insensitive which will match 'an' || 'An' || 'the' || 'The' etc.
+            // Second side of replace method is what we're replacing it with (in this case nothing)
+            // .trim() is to just remove any spaces after it
+            return bandName.replace(/^(a |the |an )/i, "")
+        }
+
+        // const sortedBands = bands.sort(function(a, b) {
+        //     if (strip(a) > strip(b)) {
+        //         return 1;
+        //     } else {
+        //         return -1;
+        //     }
+        // });
+        // above can be simplified to use a turnary operator & arrow function with implicit return;
+
+        const sortedBandsBetter = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+
+        document.querySelector("#bands").innerHTML =
+            sortedBandsBetter.map(band => `<li>${band}</li>`)
+            // when we set innerHTML with something like an array it will call .toString() on it.
+            // by default this puts a comma between the items in the now very long string.
+            // to remove the comma we just use .join() method as this will join the string into
+            // one big string rather than a bunch of strings separated by a comma.
+            .join("");
+
+        console.log(sortedBandsBetter);
+
     </script>
 
 
