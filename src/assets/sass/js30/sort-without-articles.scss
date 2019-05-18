@@ -1,0 +1,27 @@
+/*------------------*
+# Day 17 - Sort Without Articles
+*------------------*/
+
+#bands {
+    background: white;
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+    font-size: 20px;
+    list-style: inside square;
+    margin: auto;
+    padding: 0;
+    width: 100%;
+
+    li {
+        border-bottom: 1px solid #efefef;
+        padding: 20px;
+    }
+
+    li:last-child {
+        border-bottom: 0;
+    }
+
+    a {
+        color: #ffc600;
+        text-decoration: none;
+    }
+}
