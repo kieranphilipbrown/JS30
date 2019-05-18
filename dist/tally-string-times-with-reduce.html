@@ -61,9 +61,10 @@
         
     <main>
         <div class="content_width">
-            <ul class="videos">
+            <ul class="videos d18">
                 <li data-time="5:43">
                     Video 1
+                    <span>5:43</span>
                 </li>
                 <li data-time="2:33">
                     Video 2
@@ -236,10 +237,36 @@
                 <li data-time="4:04">
                     Video 58
                 </li>
+                <p class="total-time-container">Total time:<span class="total-time"></span></p>
             </ul>
         </div>
     </main>
     <script>
+
+        const timeNodes = Array.from(document.querySelectorAll("[data-time]"));
+        const totalTime = document.querySelector(".total-time");
+
+        const seconds = timeNodes
+            .map(node => node.dataset.time)
+            .map(timeCode => {
+                const [mins, secs] = timeCode.split(':').map(parseFloat);
+                return (mins * 60) + secs;
+                console.log(mins, secs)
+            })
+            .reduce((total, vidSeconds) => total + vidSeconds)
+
+            let secondsLeft = seconds;
+            const hours = Math.floor(secondsLeft / 3600);
+            // % - Mod. This means how many are left after they have been evenly distributed
+            // think of the smarties and what's left for dad
+            secondsLeft = secondsLeft % 3600;
+
+            const mins = Math.floor(secondsLeft / 60);
+            secondsLeft = secondsLeft % 60;
+
+            console.log(hours, mins, secondsLeft);
+            totalTime.innerHTML = ` ${hours} hours, ${mins} minutes ${secondsLeft} seconds.`
+
     </script>
 
 

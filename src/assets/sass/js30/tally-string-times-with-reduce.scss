@@ -1,0 +1,26 @@
+/*------------------*
+# Day 18 - Tally String Times with Reduce
+*------------------*/
+
+.d18 {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+    list-style-type: none;
+    margin: 50px auto;
+    max-width: 400px;
+    padding-left: 0;
+    padding: 1.5rem;
+
+    li {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.7rem 0;
+    }
+}
+
+.total-time-container {
+    background: #f0db4f;
+    border-radius: 5px;
+    padding: 1rem;
+}
