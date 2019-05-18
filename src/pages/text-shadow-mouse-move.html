@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main class="d16_hero">
+        <div class="content_width">
+            <div class="d16_hero__inner">
+                <span>Click on the text below to add your own...</span>
+                <h1 contenteditable>JavaScript</h1>
+            </div>
+        </div>
+    </main>
+    <script>
+        const hero = document.querySelector(".d16_hero");
+        const text = document.querySelector(".d16_hero h1");
+        const walk = 40; // 40px
+
+        function shadow(e) {
+            const width = hero.offsetWidth;
+            const height = hero.offsetHeight;
+
+            let { offsetX: x, offsetY: y } = e;
+
+            if (this !== e.target) {
+                x = x + e.target.offsetLeft;
+                y = y + e.target.offsetTop;
+            }
+
+            const xWalk = Math.round((x / width * walk ) - (walk / 2));
+            const yWalk = Math.round((y / height * walk ) - (walk / 2));
+
+            text.style.textShadow = `${xWalk}px ${yWalk}px 0 #c6ae20`;
+        }
+
+        hero.addEventListener("mousemove", shadow);
+
+    </script>
+{% endblock %}

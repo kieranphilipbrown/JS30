@@ -1,4 +1,19 @@
-<nav class="nav" role="navigation" aria-label="Primary navigation">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>JS30 | Kieran Brown</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Josefin+Sans"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/app.css" />
+    </head>
+    <body>
+
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
     <div class="nav__header">
         <span>Day:</span>
         <a class="nav__button--close">Close</a>
@@ -39,3 +54,51 @@
         <path fill="none" d="M0 0h24v24H0V0z" />
     </svg>
 </a>
+
+
+        
+    <main class="d16_hero">
+        <div class="content_width">
+            <div class="d16_hero__inner">
+                <span>Click on the text below to add your own...</span>
+                <h1 contenteditable>JavaScript</h1>
+            </div>
+        </div>
+    </main>
+    <script>
+        const hero = document.querySelector(".d16_hero");
+        const text = document.querySelector(".d16_hero h1");
+        const walk = 40; // 40px
+
+        function shadow(e) {
+            const width = hero.offsetWidth;
+            const height = hero.offsetHeight;
+
+            let { offsetX: x, offsetY: y } = e;
+
+            if (this !== e.target) {
+                x = x + e.target.offsetLeft;
+                y = y + e.target.offsetTop;
+            }
+
+            const xWalk = Math.round((x / width * walk ) - (walk / 2));
+            const yWalk = Math.round((y / height * walk ) - (walk / 2));
+
+            text.style.textShadow = `${xWalk}px ${yWalk}px 0 #c6ae20`;
+        }
+
+        hero.addEventListener("mousemove", shadow);
+
+    </script>
+
+
+        <footer>
+    <div class="content_width">
+        <p>Hosted on <a href="https://www.netlify.com/">Netlify</a></p>
+    </div>
+</footer>
+
+
+        <script src="js/main.js"></script>
+    </body>
+</html>

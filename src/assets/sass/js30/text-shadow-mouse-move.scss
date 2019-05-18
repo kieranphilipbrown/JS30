@@ -1,0 +1,29 @@
+/*------------------*
+# Day 16 - Text Shadow Mouse Move
+*------------------*/
+
+.d16_hero {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    padding: 0;
+
+    h1 {
+        font-size: 100px;
+        text-shadow: 10px 10px 0 #c6ae20;
+
+        &:focus {
+            @extend .focus;
+        }
+    }
+
+    span {
+        color: #c6ae20;
+        font-size: 25px;
+    }
+
+    &__inner {
+        text-align: center;
+    }
+}
