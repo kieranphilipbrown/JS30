@@ -70,11 +70,19 @@
 }
 
 .add-items {
+    display: flex;
     margin-top: 20px;
 }
 
 .add-items input {
     border: 1px solid rgba(0, 0, 0, 0.1);
+    outline: 0;
+    padding: 10px;
+}
+
+.clear-all {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
     outline: 0;
     padding: 10px;
 }
