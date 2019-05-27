@@ -34,6 +34,7 @@ function copyHTML(cb) {
 // Copy all sound files to dist
 function sounds(cb) {
     gulp.src("src/assets/sounds/*.wav").pipe(gulp.dest("dist/sounds"));
+    gulp.src("src/assets/sounds/*.mp3").pipe(gulp.dest("dist/sounds"));
     cb();
 }
 
