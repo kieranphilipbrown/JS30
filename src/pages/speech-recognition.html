@@ -1,0 +1,15 @@
+<div class="words" contenteditable>
+</div>
+
+{% extends "base.html" %}
+
+{% block content %}
+    <main>
+        <div class="content_width">
+            <div class="words" contenteditable></div>
+        </div>
+    </main>
+    <script>
+        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    </script>
+{% endblock %}

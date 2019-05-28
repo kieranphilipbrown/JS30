@@ -1,0 +1,38 @@
+/*------------------*
+# Day 20 - Speech Recognition
+*------------------*/
+
+.d20-words {
+    background: white;
+    background: -webkit-gradient(
+            linear,
+            0 0,
+            0 100%,
+            from(#d9eaf3),
+            color-stop(4%, #fff)
+        )
+        0 4px;
+    background-size: 100% 3rem;
+    border-radius: 5px;
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+    line-height: 3rem;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 1rem 2rem 1rem 5rem;
+    position: relative;
+
+    p {
+        margin: 0 0 3rem;
+    }
+}
+
+.words:before {
+    border: 1px solid;
+    border-color: transparent #efe4e4;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    left: 30px;
+    top: 0;
+    width: 4px;
+}
