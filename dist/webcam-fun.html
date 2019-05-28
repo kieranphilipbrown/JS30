@@ -63,30 +63,48 @@
     <main class="photobooth-container">
         <div class="photobooth">
 
+            <h2 class="look-here">Look Here!</h2>
+            <span class="lens">
+                <span class="lens-inner-1"></span>
+                <span class="lens-inner-2"></span>
+                <span class="lens-inner-3"></span>
+                <svg class="lens-arrow" width="13" height="28" xmlns="http://www.w3.org/2000/svg"><g stroke="#333" fill="none" fill-rule="evenodd"><path d="M.572 17.135C1.8 30.8-1.787 27.595 12.728 24.909M5.679 22.453C8.604 17.128 15.849 6.823 9.775.92"/></g></svg>
+            </span>
             <canvas class="photo"></canvas>
             <video class="player"></video>
-            <button class="filters">Filters</button>
-            <div class="controls">
-                <div class="rgb">
-                <label for="rmin">Red Min:</label>
-                <input type="range" min=0 max=255 name="rmin">
-                <label for="rmax">Red Max:</label>
-                <input type="range" min=0 max=255 name="rmax">
+            <div class="pb-controls">
+                <label class="check-container">None
+                    <input id="default_effect" type="radio" checked="checked" name="radio">
+                    <span class="checkmark default-effect-button"></span>
+                </label>
+                <label class="check-container">Red Effect
+                    <input id="red_effect" type="radio" name="radio">
+                    <span class="checkmark red-effect-button"></span>
+                </label>
+                <label class="check-container">RGB Effect
+                    <input id="rgb_effect" type="radio" name="radio">
+                    <span class="checkmark rgb-effect-button"></span>
+                </label>
+                <!-- <div class="rgb">
+                    <label for="rmin">Red Min:</label>
+                    <input type="range" min=0 max=255 name="rmin">
+                    <label for="rmax">Red Max:</label>
+                    <input type="range" min=0 max=255 name="rmax">
 
-                <br>
+                    <br>
 
-                <label for="gmin">Green Min:</label>
-                <input type="range" min=0 max=255 name="gmin">
-                <label for="gmax">Green Max:</label>
-                <input type="range" min=0 max=255 name="gmax">
+                    <label for="gmin">Green Min:</label>
+                    <input type="range" min=0 max=255 name="gmin">
+                    <label for="gmax">Green Max:</label>
+                    <input type="range" min=0 max=255 name="gmax">
 
-                <br>
+                    <br>
 
-                <label for="bmin">Blue Min:</label>
-                <input type="range" min=0 max=255 name="bmin">
-                <label for="bmax">Blue Max:</label>
-                <input type="range" min=0 max=255 name="bmax">
-                </div>
+                    <label for="bmin">Blue Min:</label>
+                    <input type="range" min=0 max=255 name="bmin">
+                    <label for="bmax">Blue Max:</label>
+                    <input type="range" min=0 max=255 name="bmax">
+                </div> -->
             </div>
             <div class="strip">
                 <span class="strip-title">Your Snapshots. Click to download.</span>
@@ -94,7 +112,10 @@
             </div>
 
             <audio class="snap" src="sounds/snap.mp3" hidden></audio>
-            <button onClick="takePhoto()" class="take-photo">Take Photo</button>
+            <div class="button-container">
+                <button onClick="takePhoto()" class="take-photo">Take Photo</button>
+                <button class="filters">Filters</button>
+            </div>
         </div>
     </main>
     <script>
@@ -106,7 +127,9 @@
         const stripClose = document.querySelector('.strip--close');
         const snap = document.querySelector('.snap');
         const filtersButton = document.querySelector('.filters');
-        const controls = document.querySelector('.controls');
+        const controls = document.querySelector('.pb-controls');
+        const redEffectCheck = document.querySelector("#red_effect");
+        const rgbEffectCheck = document.querySelector("#rgb_effect");
 
         function closeStrip() {
             strip.classList.remove("strip--open");
@@ -141,12 +164,17 @@
                 // take the pixels out
                 let pixels = ctx.getImageData(0, 0 , width, height);
                 // mess with pixels
-                //pixels = redEffect(pixels);
-                //pixels = rgbSplit(pixels);
-                //ctx.globalAlpha = 0.1;
+                if (redEffectCheck.checked) {
+                    pixels = redEffect(pixels);
+                    ctx.putImageData(pixels, 0, 0);
+                }
+                if (rgbEffectCheck.checked) {
+                    pixels = rgbSplit(pixels);
+                    ctx.putImageData(pixels, 0, 0);
+                }
                 //pixels = greenScreen(pixels);
                 // put pixels back
-                ctx.putImageData(pixels, 0, 0);
+                //ctx.putImageData(pixels, 0, 0);
 
             }, 16);
         }
