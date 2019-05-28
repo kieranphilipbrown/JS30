@@ -14,26 +14,38 @@
             <canvas class="photo"></canvas>
             <video class="player"></video>
             <div class="pb-controls">
-                <div class="rgb">
-                <label for="rmin">Red Min:</label>
-                <input type="range" min=0 max=255 name="rmin">
-                <label for="rmax">Red Max:</label>
-                <input type="range" min=0 max=255 name="rmax">
+                <label class="check-container">None
+                    <input id="default_effect" type="radio" checked="checked" name="radio">
+                    <span class="checkmark default-effect-button"></span>
+                </label>
+                <label class="check-container">Red Effect
+                    <input id="red_effect" type="radio" name="radio">
+                    <span class="checkmark red-effect-button"></span>
+                </label>
+                <label class="check-container">RGB Effect
+                    <input id="rgb_effect" type="radio" name="radio">
+                    <span class="checkmark rgb-effect-button"></span>
+                </label>
+                <!-- <div class="rgb">
+                    <label for="rmin">Red Min:</label>
+                    <input type="range" min=0 max=255 name="rmin">
+                    <label for="rmax">Red Max:</label>
+                    <input type="range" min=0 max=255 name="rmax">
 
-                <br>
+                    <br>
 
-                <label for="gmin">Green Min:</label>
-                <input type="range" min=0 max=255 name="gmin">
-                <label for="gmax">Green Max:</label>
-                <input type="range" min=0 max=255 name="gmax">
+                    <label for="gmin">Green Min:</label>
+                    <input type="range" min=0 max=255 name="gmin">
+                    <label for="gmax">Green Max:</label>
+                    <input type="range" min=0 max=255 name="gmax">
 
-                <br>
+                    <br>
 
-                <label for="bmin">Blue Min:</label>
-                <input type="range" min=0 max=255 name="bmin">
-                <label for="bmax">Blue Max:</label>
-                <input type="range" min=0 max=255 name="bmax">
-                </div>
+                    <label for="bmin">Blue Min:</label>
+                    <input type="range" min=0 max=255 name="bmin">
+                    <label for="bmax">Blue Max:</label>
+                    <input type="range" min=0 max=255 name="bmax">
+                </div> -->
             </div>
             <div class="strip">
                 <span class="strip-title">Your Snapshots. Click to download.</span>
@@ -57,6 +69,8 @@
         const snap = document.querySelector('.snap');
         const filtersButton = document.querySelector('.filters');
         const controls = document.querySelector('.pb-controls');
+        const redEffectCheck = document.querySelector("#red_effect");
+        const rgbEffectCheck = document.querySelector("#rgb_effect");
 
         function closeStrip() {
             strip.classList.remove("strip--open");
@@ -89,11 +103,16 @@
             return setInterval(() => {
                 ctx.drawImage(video, 0, 0, width, height);
                 // take the pixels out
-                //let pixels = ctx.getImageData(0, 0 , width, height);
+                let pixels = ctx.getImageData(0, 0 , width, height);
                 // mess with pixels
-                //pixels = redEffect(pixels);
-                //pixels = rgbSplit(pixels);
-                //ctx.globalAlpha = 0.1;
+                if (redEffectCheck.checked) {
+                    pixels = redEffect(pixels);
+                    ctx.putImageData(pixels, 0, 0);
+                }
+                if (rgbEffectCheck.checked) {
+                    pixels = rgbSplit(pixels);
+                    ctx.putImageData(pixels, 0, 0);
+                }
                 //pixels = greenScreen(pixels);
                 // put pixels back
                 //ctx.putImageData(pixels, 0, 0);

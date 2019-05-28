@@ -36,6 +36,61 @@
     display: block;
 }
 
+.check-container {
+    cursor: pointer;
+    display: block;
+    font-size: 22px;
+    margin-bottom: 12px;
+    padding-left: 35px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.check-container input {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+}
+
+.checkmark {
+    background-color: #eee;
+    border-radius: 50%;
+    height: 25px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 25px;
+}
+
+.check-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.check-container input:checked ~ .checkmark.default-effect-button {
+    background-color: #333;
+}
+
+.check-container input:checked ~ .checkmark.red-effect-button {
+    background-color: red;
+}
+
+.check-container input:checked ~ .checkmark.rgb-effect-button {
+    background-color: red;
+    background-image: linear-gradient(
+        to right,
+        red,
+        orange,
+        yellow,
+        green,
+        blue,
+        indigo,
+        violet
+    );
+}
+
 .take-photo,
 .filters {
     background: #333;
