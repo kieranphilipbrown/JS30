@@ -71,7 +71,7 @@
                 <svg class="lens-arrow" width="13" height="28" xmlns="http://www.w3.org/2000/svg"><g stroke="#333" fill="none" fill-rule="evenodd"><path d="M.572 17.135C1.8 30.8-1.787 27.595 12.728 24.909M5.679 22.453C8.604 17.128 15.849 6.823 9.775.92"/></g></svg>
             </span>
             <canvas class="photo"></canvas>
-            <video class="player"></video>
+            <video class="video-player"></video>
             <div class="pb-controls">
                 <label class="check-container">None
                     <input id="default_effect" type="radio" checked="checked" name="radio">
@@ -120,7 +120,7 @@
     </main>
     <script>
 
-        const video = document.querySelector('.player');
+        const video = document.querySelector('.video-player');
         const canvas = document.querySelector('.photo');
         const ctx = canvas.getContext('2d');
         const strip = document.querySelector('.strip');
