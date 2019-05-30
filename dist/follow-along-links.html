@@ -75,7 +75,7 @@
                 </ul>
             </div>
         </nav>
-        <div class="content_width">
+        <div class="content_width relative">
             <p>Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing elit. Est <a href="">explicabo</a> unde natus necessitatibus esse obcaecati distinctio, aut itaque, qui vitae!</p>
             <p>Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque praesentium laborum pariatur earum <a href="">quaerat</a> cupiditate consequuntur facilis ullam dignissimos, aperiam quam veniam.</p>
             <p>Cum ipsam quod, incidunt sit ex <a href="">tempore</a> placeat maxime <a href="">corrupti</a> possimus <a href="">veritatis</a> ipsum fugit recusandae est doloremque? Hic, <a href="">quibusdam</a>, nulla.</p>
@@ -84,6 +84,30 @@
         </div>
     </main>
     <script>
+
+    const triggers = document.querySelectorAll(".d-22 a");
+    const highlight = document.createElement("span");
+    highlight.classList.add("d-22-highlight");
+    document.body.appendChild(highlight);
+
+    function highlightLink() {
+        const linkCoords = this.getBoundingClientRect();
+        console.log(linkCoords);
+        const coords = {
+            width: linkCoords.width,
+            height: linkCoords.height,
+            top: linkCoords.top + window.scrollY,
+            left: linkCoords.left + window.scrollX
+        };
+
+        highlight.style.width = `${coords.width}px`;
+        highlight.style.height = `${coords.height}px`;
+        highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+
+    }
+
+    triggers.forEach(a => a.addEventListener('mouseenter', highlightLink));
+
     </script>
 
 
