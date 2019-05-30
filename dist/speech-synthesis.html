@@ -1,4 +1,19 @@
-<nav class="nav" role="navigation" aria-label="Primary navigation">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>JS30 | Kieran Brown</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Josefin+Sans"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/app.css" />
+    </head>
+    <body>
+
+        <nav class="nav" role="navigation" aria-label="Primary navigation">
     <div class="nav__header">
         <span>Day:</span>
         <a class="nav__button--close">Close</a>
@@ -46,3 +61,49 @@
         <path fill="none" d="M0 0h24v24H0V0z" />
     </svg>
 </a>
+
+
+        
+    <main class="d-23">
+        <div class="content_width">
+            <div class="d-23_voicinator">
+                <h1>The Voiceinator 5000</h1>
+
+                <select name="voice" id="voices">
+                    <option value="">Select A Voice</option>
+                </select>
+
+                <label for="rate">Rate:</label>
+                <input name="rate" type="range" min="0" max="3" value="1" step="0.1">
+
+                <label for="pitch">Pitch:</label>
+
+                <input name="pitch" type="range" min="0" max="2" step="0.1">
+                <textarea name="text">Hello! I love JavaScript 👍</textarea>
+                <button id="stop">Stop!</button>
+                <button id="speak">Speak</button>
+            </div>
+        </div>
+    </main>
+    <script>
+
+    const msg = new SpeechSynthesisUtterance();
+    let voices = [];
+    const voicesDropdown = document.querySelector('[name="voice"]');
+    const options = document.querySelectorAll('[type="range"], [name="text"]');
+    const speakButton = document.querySelector('#speak');
+    const stopButton = document.querySelector('#stop');
+
+    </script>
+
+
+        <footer>
+    <div class="content_width">
+        <p>Hosted on <a href="https://www.netlify.com/">Netlify</a></p>
+    </div>
+</footer>
+
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
