@@ -1,0 +1,54 @@
+/*------------------*
+# Day 22 - Follow Along Links
+*------------------*/
+
+.d-22 {
+    min-height: 100vh;
+
+    a {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 20px;
+        color: black;
+        padding: 5px;
+        position: relative;
+        text-decoration: none;
+        z-index: 10;
+    }
+
+    .menu {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        list-style: none;
+        margin: 100px 0;
+        padding: 0;
+
+        @include tablet {
+            flex-direction: row;
+        }
+    }
+
+    .menu a {
+        color: black;
+        display: inline-block;
+        margin: 20px;
+        padding: 10px;
+
+        @include tablet {
+            margin: 0 20px;
+        }
+    }
+}
+
+.d-22-highlight {
+    background: white;
+    border-bottom: 2px solid white;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: all 0.2s;
+}
