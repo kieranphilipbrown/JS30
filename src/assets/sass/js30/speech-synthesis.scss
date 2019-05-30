@@ -2,6 +2,8 @@
 # Day 23 - Speech Synthesis
 *------------------*/
 
+@import url("https://fonts.googleapis.com/css?family=Pacifico&display=swap");
+
 .d-23 {
     align-items: center;
     background-color: #3bc1ac;
@@ -89,27 +91,27 @@
 }
 
 .d-23_voicinator {
-    padding: 2rem;
-    width: 50rem;
-    margin: 0 auto;
-    border-radius: 1rem;
-    position: relative;
     background: white;
-    overflow: hidden;
-    z-index: 1;
+    border-radius: 1rem;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 2rem;
+    position: relative;
+    width: 50rem;
+    z-index: 1;
 
     h1 {
-        width: calc(100% + 4rem);
-        margin: -2rem 0 2rem -2rem;
-        padding: 0.5rem;
         background: #ffc600;
         border-bottom: 5px solid #f3c010;
-        text-align: center;
+        font-family: "Pacifico", cursive;
         font-size: 5rem;
         font-weight: 100;
-        font-family: "Pacifico", cursive;
+        margin: -2rem 0 2rem -2rem;
+        padding: 0.5rem;
+        text-align: center;
         text-shadow: 3px 3px 0 #f3c010;
+        width: calc(100% + 4rem);
     }
 
     textarea {
@@ -121,30 +123,27 @@
 .d-23_voicinator button,
 .d-23_voicinator select,
 .d-23_voicinator textarea {
-    width: 100%;
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
-    border: 0;
-    font-size: 2rem;
     background: #f7f7f7;
+    border: 0;
+    display: block;
+    font-size: 2rem;
+    margin: 10px 0;
     outline: 0;
-}
-
-input[type="select"] {
+    padding: 10px;
+    width: 100%;
 }
 
 .d-23_voicinator button {
     background: #ffc600;
     border: 0;
-    width: 49%;
-    float: left;
-    font-family: "Pacifico", cursive;
-    margin-bottom: 0;
-    font-size: 2rem;
     border-bottom: 5px solid #f3c010;
     cursor: pointer;
+    float: left;
+    font-family: "Pacifico", cursive;
+    font-size: 2rem;
+    margin-bottom: 0;
     position: relative;
+    width: 49%;
 }
 
 .d-23_voicinator button:active {
