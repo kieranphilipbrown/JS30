@@ -63,65 +63,27 @@
 
 
         
-    <main class="d6">
-        <div class="content_width">
-            <form class="search-form">
-                <input type="text" class="search" placeholder="City or State">
-                <ul class="suggestions">
-                    <li>Filter for a city</li>
-                    <li>or a state</li>
+    <main class="d-22">
+        <nav>
+            <div class="content_width">
+                <ul class="menu">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Order Status</a></li>
+                    <li><a href="">Tweets</a></li>
+                    <li><a href="">Read Our History</a></li>
+                    <li><a href="">Contact Us</a></li>
                 </ul>
-            </form>
+            </div>
+        </nav>
+        <div class="content_width">
+            <p>Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing elit. Est <a href="">explicabo</a> unde natus necessitatibus esse obcaecati distinctio, aut itaque, qui vitae!</p>
+            <p>Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque praesentium laborum pariatur earum <a href="">quaerat</a> cupiditate consequuntur facilis ullam dignissimos, aperiam quam veniam.</p>
+            <p>Cum ipsam quod, incidunt sit ex <a href="">tempore</a> placeat maxime <a href="">corrupti</a> possimus <a href="">veritatis</a> ipsum fugit recusandae est doloremque? Hic, <a href="">quibusdam</a>, nulla.</p>
+            <p>Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae magni odit <a href="">totam</a> ut consequatur eveniet sunt quam provident sapiente dicta neque quod.</p>
+            <p>Aliquam <a href="">dicta</a> sequi culpa fugiat <a href="">consequuntur</a> pariatur optio ad minima, maxime <a href="">odio</a>, distinctio magni impedit tempore enim repellendus <a href="">repudiandae</a> quas!</p>
         </div>
     </main>
     <script>
-        const endpoint = "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"; 
-
-        // Create an empty array
-        const cities = [];
-
-        // Search Input & Suggestions
-        const searchInput = document.querySelector(".search");
-        const suggestions = document.querySelector(".suggestions");
-
-        // New API to fetch data
-        // Similar to $jquery.getJSon
-        fetch(endpoint)
-            .then(blob => blob.json())
-            .then(data => cities.push(...data));
-
-        function findMatches(wordToMatch, cities) {
-            return cities.filter(place => {
-                // we need to figure out if the city or state matches what was searched.
-                const regex = new RegExp(wordToMatch, "gi");
-                return place.city.match(regex) || place.state.match(regex);
-            });
-        }
-
-        // Regex to insert commas into numbers
-        function numberWithCommas(x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        }
-
-        function displayMatches() {
-            const matchArray = findMatches(this.value, cities);
-            const html = matchArray.map(place => {
-                const regex = new RegExp(this.value, "gi");
-                const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
-                const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
-                return `
-                    <li>
-                        <span class="name">${cityName}, ${stateName}</span>
-                        <span class="population">${numberWithCommas(place.population)}</span>
-                    </li>
-                `;
-            }).join("");
-            suggestions.innerHTML = html;
-        }
-
-        searchInput.addEventListener("change", displayMatches);
-        searchInput.addEventListener("keyup", displayMatches);
-
     </script>
 
 
