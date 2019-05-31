@@ -1,0 +1,96 @@
+/*------------------*
+# Day 24 - Sticky Nav
+*------------------*/
+
+.d-24 {
+    background: #e9e9e9;
+    padding: 0;
+}
+  
+.d-24_header {
+    align-items: center;
+    background: url('/images/highland-cow.jpeg') center center no-repeat;
+    background-size: cover;
+    display: flex;
+    height: 80vh;
+    justify-content: center;
+    text-align: center;
+
+    h1 {
+        color: white;
+        font-size: 7vw;
+        text-shadow: 3px 4px 0 rgba(0,0,0,0.2);
+    }
+
+}
+
+.d-24_nav {
+    background: black;
+    position: relative;
+    top: 0;
+    transition: all 0.5s;
+    width: 100%;
+    z-index: 1;
+    
+    ul {
+        display: flex;
+        height: 60px;
+        list-style: none;
+        margin: 0;
+        padding:0;
+    }
+    
+    li {
+        align-items: center;
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    li.logo {
+        background: white;
+        max-width: 0;
+        overflow: hidden;
+        font-size: 30px;
+        font-weight: 600;
+        transition: all .5s;
+    }
+    
+    li.logo a {
+        color: black;
+    }
+      
+    a {
+        color: white;
+        display: inline-block;
+        padding: 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: all 0.2s;
+    }
+}
+
+.fixed-nav .d-24_nav {
+    box-shadow: 0 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+}
+
+.fixed-nav .d-24_nav li.logo {
+    max-width: 500px;
+}
+
+.fixed-nav .site-wrap {
+    transform: scale(1);
+}
+
+.site-wrap {
+    max-width: 700px;
+    margin: 70px auto;
+    background: white;
+    padding: 40px;
+    text-align: justify;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+    transform: scale(0.98);
+    transition: transform 0.5s;
+}
