@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="d25_one rectangle">
+        <div class="d25_two rectangle">
+            <div class="d25_three rectangle">
+            </div>
+        </div>
+    </div>
+    <button class="d25_button">Click Me Once</button>
+    <script>
+
+        const rectangles = document.querySelectorAll(".rectangle");
+        const buttonOnce = document.querySelector(".d25_button");
+
+        function logText(e) {
+            console.log(this.classList.value);
+            // e.stopPropagation(); // stop bubbling, meaning it will no longer trigger the function on the way back up
+        }
+
+        rectangles.forEach(rectangle => rectangle.addEventListener("click", logText, {
+            capture: false,
+            once: true
+        }));
+
+        // passing option of 'once: true' is same as doing:
+        // rectangle.removeEventListener("click", logText);
+        // listens for click once and will never run again after running first time (until page refresh)
+
+        buttonOnce.addEventListener("click", () => {
+            console.log("Button clicked!");
+        }, {
+            once: true
+        });
+
+    </script>
+{% endblock %}

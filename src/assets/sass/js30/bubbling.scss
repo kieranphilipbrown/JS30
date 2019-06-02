@@ -1,0 +1,38 @@
+/*------------------*
+# Day 25 - Bubbling
+*------------------*/
+
+.rectangle {
+    padding: 100px;
+    width: 100%;
+}
+
+.d25_one {
+    background: thistle;
+}
+.d25_two {
+    background: mistyrose;
+}
+
+.d25_three {
+    background: coral;
+}
+
+.d25_button {
+    background: #333;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    margin: 4rem auto;
+    padding: 1rem 1.5rem;
+    text-transform: uppercase;
+    width: 50%;
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
