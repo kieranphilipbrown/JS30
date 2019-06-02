@@ -1,0 +1,102 @@
+/*------------------*
+# Day 26 - Stripe Navigation
+*------------------*/
+
+.d-26_nav {
+    perspective: 600px;
+    position: relative;
+}
+
+.d-26_menu > li > a {
+    background: rgba(0,0,0,0.2);
+    border-radius: 5px;
+    color: yellow;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.d-26_nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.d-26_menu > li {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.dropdown {
+    align-items: center;
+    border-radius: 2px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    overflow: hidden;
+    padding: 20px;
+    position: absolute;
+    will-change: opacity;
+    transition: all 0.5s;
+    transform: translateY(100px);
+    top: -20px;
+}
+
+.trigger-enter .dropdown {
+    display: flex;
+}
+
+.trigger-enter-active .dropdown {
+    opacity: 1;
+}
+  
+.dropdownBackground {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 50px 100px rgba(50,50,93,.1), 0 15px 35px rgba(50,50,93,.15), 0 5px 15px rgba(0,0,0,.1);
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    position: absolute;
+    transform-origin: 50% 0;
+    transition: all 0.3s, opacity 0.1s, transform 0.2s;
+    opacity:0;
+    width: 100px;
+}
+
+.dropdownBackground.open {
+    opacity: 1;
+}
+
+.d-26_arrow {
+    background: white;
+    display: block;
+    height: 20px;
+    position: absolute;
+    transform: translateY(-50%) rotate(45deg);
+    width: 20px;
+}
+
+.dropdown a {
+    color: #ffc600;
+    text-decoration: none;
+}
+
+.dropdown3 {
+    align-items: center;
+    justify-content: center;
+    line-height: 1.7;
+    min-width: 500px;
+
+    img {
+        height: 200px;
+        margin-bottom: 1rem;
+        width: 200px;
+    }
+}
