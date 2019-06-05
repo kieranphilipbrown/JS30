@@ -70,43 +70,69 @@
         
     <main>
         <div class="content_width">
-            <div class="d20-words" contenteditable></div>
+            <div class="items">
+                <div class="item item1">01</div>
+                <div class="item item2">02</div>
+                <div class="item item3">03</div>
+                <div class="item item4">04</div>
+                <div class="item item5">05</div>
+                <div class="item item6">06</div>
+                <div class="item item7">07</div>
+                <div class="item item8">08</div>
+                <div class="item item9">09</div>
+                <div class="item item10">10</div>
+                <div class="item item11">11</div>
+                <div class="item item12">12</div>
+                <div class="item item13">13</div>
+                <div class="item item14">14</div>
+                <div class="item item15">15</div>
+                <div class="item item16">16</div>
+                <div class="item item17">17</div>
+                <div class="item item18">18</div>
+                <div class="item item19">19</div>
+                <div class="item item20">20</div>
+                <div class="item item21">21</div>
+                <div class="item item22">22</div>
+                <div class="item item23">23</div>
+                <div class="item item24">24</div>
+                <div class="item item25">25</div>
+            </div>
         </div>
     </main>
     <script>
-        window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-        const recognition = new SpeechRecognition();
-        recognition.interimResults = true;
+        const slider = document.querySelector(".items");
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-        let p = document.createElement("p");
-        const words = document.querySelector(".d20-words");
-        words.appendChild(p);
-
-        recognition.addEventListener("result", e =>  {
-            const transcript = Array.from(e.results)
-                .map(result => result[0])
-                .map(result => result.transcript)
-                .join("")
-
-                p.textContent = transcript;
-                if (e.results[0].isFinal) {
-                    p = document.createElement("p");
-                    words.appendChild(p);
-                }
-                if (transcript.includes("Manchester weather")) {
-                    getManchesterWeather();
-                }
-                console.log(transcript);
+        slider.addEventListener("mousedown", (e) => {
+            isDown = true;
+            slider.classList.add("active");
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            console.log(startX);
         });
 
-        function getManchesterWeather() {
-            window.location.href = 'https://www.google.com/search?q=weather+in+manchester&oq=weather+in+manchester&aqs=chrome..69i57j0l5.10751j1j7&sourceid=chrome&ie=UTF-8';
-        }
+        slider.addEventListener("mouseleave", () => {
+            isDown = false;
+            slider.classList.remove("active");
+        });
 
-        recognition.addEventListener("end", recognition.start)
+        slider.addEventListener("mouseup", () => {
+            isDown = false;
+            slider.classList.remove("active");
+        });
 
-        recognition.start();
+        slider.addEventListener("mousemove", (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            console.log({x, startX});
+            const walk = x - startX; // how far we have deviated from initial mousedown
+            console.log(walk);
+            slider.scrollLeft = scrollLeft - walk;
+        });
 
     </script>
 
