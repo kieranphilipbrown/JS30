@@ -69,84 +69,35 @@
 
 
         
-    <main>
-        <nav class="d-26_nav">
-            <div class="dropdownBackground">
-                <span class="d-26_arrow"></span>
+    <main class="centre">
+        <div class="content_width">
+            <div class="d-28_wrapper">
+                <video class="d-28_video" src="videos/652333414.mp4" loop controls></video>
+                <div class="d-28_speed">
+                    <div class="d-28_speed-bar">1×</div>
+                </div> 
             </div>
-            <div class="content_width">
-                <ul class="d-26_menu">
-                    <li>
-                        <a href="#">Home</a>
-                        <div class="dropdown dropdown1">
-                            <h3>A Few Links</h3>
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                            <a href="#">Link 4</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#">About</a>
-                        <div class="dropdown dropdown2">
-                            <h3>Many Links</h3>
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                            <a href="#">Link 4</a>
-                            <a href="#">Link 5</a>
-                            <a href="#">Link 6</a>
-                            <a href="#">Link 7</a>
-                            <a href="#">Link 8</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                        <div class="dropdown dropdown3">
-                            <h3>Image</h3>
-                            <img src="/images/highland-cow.jpeg" alt="Highland Cow" />
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        </div>
     </main>
     <script>
+        
+        const speed = document.querySelector(".d-28_speed");
+        const bar = document.querySelector(".d-28_speed-bar");
+        const video = document.querySelector(".d-28_video");
 
-        const triggers = document.querySelectorAll(".d-26_menu > li");
-        const background = document.querySelector(".dropdownBackground");
-        const stripeNav = document.querySelector(".d-26_nav");
-
-        function handleEnter() {
-            this.classList.add("trigger-enter");
-            setTimeout(() => this.classList.contains("trigger-enter") && this.classList.add("trigger-enter-active"), 150);
-            background.classList.add("open");
-
-            const dropdown = this.querySelector(".dropdown");
-            const dropdownCoords = dropdown.getBoundingClientRect();
-            console.log(dropdownCoords);
-            const navCoords = stripeNav.getBoundingClientRect();
-            console.log(navCoords);
-
-            const coords = {
-                height: dropdownCoords.height,
-                width: dropdownCoords.width,
-                top: dropdownCoords.top - navCoords.top,
-                left: dropdownCoords.left - navCoords.left
-            }
-
-            background.style.setProperty("width", `${coords.width}px`);
-            background.style.setProperty("height", `${coords.height}px`);
-            background.style.setProperty("transform", `translate(${coords.left}px, ${coords.top}px)`);
+        function handleMove(e) {
+            const y = e.pageY - this.offsetTop;
+            const percent = y / this.offsetHeight;
+            const min = 0.4;
+            const max = 4.0;
+            const height = Math.round(percent * 100) + "%";
+            const playbackRate = percent * (max - min) + min;
+            bar.style.height = height;
+            bar.textContent = playbackRate.toFixed(2) + "x";
+            video.playbackRate = playbackRate;
         }
 
-        function handleLeave() {
-            this.classList.remove("trigger-enter", "triger-enter-active");
-            background.classList.remove("open");
-        }
-
-        triggers.forEach(trigger => trigger.addEventListener("mouseenter", handleEnter));
-        triggers.forEach(trigger => trigger.addEventListener("mouseleave", handleLeave));
+        speed.addEventListener("mousemove", handleMove);
 
     </script>
 

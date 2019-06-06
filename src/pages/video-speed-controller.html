@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main class="centre">
+        <div class="content_width">
+            <div class="d-28_wrapper">
+                <video class="d-28_video" src="videos/652333414.mp4" loop controls></video>
+                <div class="d-28_speed">
+                    <div class="d-28_speed-bar">1×</div>
+                </div> 
+            </div>
+        </div>
+    </main>
+    <script>
+        
+        const speed = document.querySelector(".d-28_speed");
+        const bar = document.querySelector(".d-28_speed-bar");
+        const video = document.querySelector(".d-28_video");
+
+        function handleMove(e) {
+            const y = e.pageY - this.offsetTop;
+            const percent = y / this.offsetHeight;
+            const min = 0.4;
+            const max = 4.0;
+            const height = Math.round(percent * 100) + "%";
+            const playbackRate = percent * (max - min) + min;
+            bar.style.height = height;
+            bar.textContent = playbackRate.toFixed(2) + "x";
+            video.playbackRate = playbackRate;
+        }
+
+        speed.addEventListener("mousemove", handleMove);
+
+    </script>
+{% endblock %}
