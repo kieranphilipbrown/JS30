@@ -1,11 +1,23 @@
+{% extends "base.html" %} {% block content %}
+<main>
+    <div class="content_width">
+        <p>Day 28 - Video Speed Controller</p>
+    </div>
+</main>
+<script></script>
+{% endblock %}
 {% extends "base.html" %}
 
 {% block content %}
     <main>
         <div class="content_width">
-            <p>Day 28 - Video Speed Controller</p>
+            <video class="d-28_video" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop controls></video>
+            <div class="d-28_speed">
+                <div class="d-28_speed-bar">1×</div>
+            </div> 
         </div>
     </main>
     <script>
+        
     </script>
 {% endblock %}
