@@ -1,0 +1,93 @@
+/*------------------*
+# Day 29 - Countdown Clock
+*------------------*/
+
+.d-29 {
+    margin: 0;
+    padding: 0;
+}
+
+.display__time-left {
+    color: white;
+    font-size: 4rem;
+    font-weight: 100;
+    margin: 0;
+    text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.05);
+
+    @include tablet {
+        font-size: 15rem;
+    }
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.timer__controls {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.timer__controls > * {
+    flex: 1;
+}
+
+.timer__controls form {
+    display: flex;
+    flex: 1;
+}
+
+.timer__controls input {
+    border: 0;
+    flex: 1;
+    padding: 2rem;
+}
+
+.timer__button {
+    background: none;
+    background: rgba(0, 0, 0, 0.1);
+    border: 0;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    color: white;
+    cursor: pointer;
+    flex-basis: 100px;
+    font-size: 1.2rem;
+    font-family: "Inconsolata", monospace;
+    padding: 1rem;
+    text-transform: uppercase;
+
+    @include tablet {
+        font-size: 2rem;
+    }
+}
+
+.timer__button:hover,
+.timer__button:focus {
+    background: rgba(0, 0, 0, 0.2);
+    outline: 0;
+}
+
+.display {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.display__end-time {
+    color: white;
+    font-size: 2rem;
+    margin: 0;
+
+    @include tablet {
+        font-size: 4rem;
+    }
+}
+
+.centre-text {
+    text-align: center;
+}
