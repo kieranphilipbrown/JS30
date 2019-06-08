@@ -71,37 +71,105 @@
 
 
         
-    <main class="centre">
-        <div class="content_width">
-            <div class="d-28_wrapper">
-                <video class="d-28_video" src="videos/652333414.mp4" loop controls></video>
-                <div class="d-28_speed">
-                    <div class="d-28_speed-bar">1×</div>
-                </div> 
+<main>
+    <div class="content_width">
+        <div class="game-container">
+            <div class="game-title">
+                <h1>Whack-a-mole! <span class="score">0</span></h1>
+            </div>
+            <div class="game-controls visible">
+                <button class="start-game visible" onClick="startGame()">Start!</button>
+                <!-- <button class="options visible">Options</button> -->
+            </div>
+            <div class="game">
+                <div class="hole hole1">
+                    <div class="mole"></div>
+                </div>
+                <div class="hole hole2">
+                    <div class="mole"></div>
+                </div>
+                <div class="hole hole3">
+                    <div class="mole"></div>
+                </div>
+                <div class="hole hole4">
+                    <div class="mole"></div>
+                </div>
+                <div class="hole hole5">
+                    <div class="mole"></div>
+                </div>
+                <div class="hole hole6">
+                    <div class="mole"></div>
+                </div>
             </div>
         </div>
-    </main>
-    <script>
-        
-        const speed = document.querySelector(".d-28_speed");
-        const bar = document.querySelector(".d-28_speed-bar");
-        const video = document.querySelector(".d-28_video");
+    </div>
+</main>
+<script>
 
-        function handleMove(e) {
-            const y = e.pageY - this.offsetTop;
-            const percent = y / this.offsetHeight;
-            const min = 0.4;
-            const max = 4.0;
-            const height = Math.round(percent * 100) + "%";
-            const playbackRate = percent * (max - min) + min;
-            bar.style.height = height;
-            bar.textContent = playbackRate.toFixed(2) + "x";
-            video.playbackRate = playbackRate;
+    const holes = document.querySelectorAll(".hole");
+    const scoreBoard = document.querySelector(".score");
+    const moles = document.querySelectorAll(".mole");
+    const game = document.querySelector(".game");
+    const startGameButton = document.querySelector(".start-game");
+    const gameControls = document.querySelector(".game-controls");
+    let lastHole;
+    let timeUp = false;
+    let score = 0;
+
+    function randomTime(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
+    }
+
+
+    function randomHole() {
+        const idx = Math.floor(Math.random() * holes.length);
+        const hole = holes[idx];
+        if (hole === lastHole) {
+            console.log("That's the same hole as last time, lets run that function again.");
+            return randomHole();
         }
 
-        speed.addEventListener("mousemove", handleMove);
+        lastHole = hole;
+        return hole;
+    }
 
-    </script>
+    function peep() {
+        const time = randomTime(200, 1000);
+        const hole = randomHole(holes);
+        hole.classList.add("up");
+
+        setTimeout(() => {
+            hole.classList.remove("up");
+            if (!timeUp) peep();
+        }, time);
+    }
+
+    function startGame() {
+        scoreBoard.textContent = 0;
+        timeUp = false;
+        score = 0;
+        game.classList.add("visible");
+        gameControls.classList.remove("visible");
+        peep();
+        setTimeout(() =>{
+            timeUp = true;
+            game.classList.remove("visible");
+            gameControls.classList.add("visible");
+            startGameButton.textContent = "Play Again?"
+        }, 10000);
+    }
+
+    function bonk(e) {
+        if (!e.isTrusted) return; // Cheater. Faking a click
+
+        score++;
+        this.classList.remove("up");
+        scoreBoard.textContent = score;
+    }
+
+    moles.forEach(mole => mole.addEventListener("click", bonk));
+
+</script>
 
 
         <footer>
