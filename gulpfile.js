@@ -31,6 +31,12 @@ function copyHTML(cb) {
     cb();
 }
 
+// Copy favicons to Dist
+function copyFavicons(cb) {
+    gulp.src("src/assets/favicons/*").pipe(gulp.dest("dist/favicons"));
+    cb();
+}
+
 // Copy all sound files to dist
 function sounds(cb) {
     gulp.src("src/assets/sounds/*.wav").pipe(gulp.dest("dist/sounds"));
@@ -127,9 +133,18 @@ exports.default = series(
     js,
     imageMin,
     sounds,
+    copyFavicons,
     videos,
     watch_files
 );
 
 // 'gulp build' will build all assets but not run on a local server.
-exports.build = parallel(nunjucksMinify, css, js, imageMin, sounds, videos);
+exports.build = parallel(
+    nunjucksMinify,
+    css,
+    js,
+    copyFavicons,
+    imageMin,
+    sounds,
+    videos
+);
