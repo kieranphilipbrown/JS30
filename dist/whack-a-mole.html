@@ -84,21 +84,27 @@
             <div class="game">
                 <div class="hole hole1">
                     <div class="mole"></div>
+                    <img src="images/whack.svg" alt="Whack!" class="whack" />
                 </div>
                 <div class="hole hole2">
                     <div class="mole"></div>
+                    <img src="images/whack.svg" alt="Whack!" class="whack" />
                 </div>
                 <div class="hole hole3">
                     <div class="mole"></div>
+                    <img src="images/whack.svg" alt="Whack!" class="whack" />
                 </div>
                 <div class="hole hole4">
                     <div class="mole"></div>
+                    <img src="images/whack.svg" alt="Whack!" class="whack" />
                 </div>
                 <div class="hole hole5">
                     <div class="mole"></div>
+                    <img src="images/whack.svg" alt="Whack!" class="whack" />
                 </div>
                 <div class="hole hole6">
                     <div class="mole"></div>
+                    <img src="images/whack.svg" alt="Whack!" class="whack" />
                 </div>
             </div>
         </div>
@@ -119,7 +125,6 @@
     function randomTime(min, max) {
         return Math.round(Math.random() * (max - min) + min);
     }
-
 
     function randomHole() {
         const idx = Math.floor(Math.random() * holes.length);
@@ -164,6 +169,11 @@
 
         score++;
         this.classList.remove("up");
+
+        e.target.nextElementSibling.classList.add("whack--display");
+        setTimeout(() => {
+            e.target.nextElementSibling.classList.remove("whack--display");
+        }, 100);
         scoreBoard.textContent = score;
     }
 
