@@ -29,7 +29,7 @@ if (navOpenButton) {
         fadeEffect(navItem);
         setTimeout(function() {
             nav.classList.remove("nav_open");
-            nav.setAttribute("hidden");
+            nav.setAttribute("hidden", true);
             navOverlay.classList.remove("nav__overlay--open");
         }, 600);
     });
@@ -39,7 +39,7 @@ if (navOpenButton) {
         fadeEffect(navItem);
         setTimeout(function() {
             nav.classList.remove("nav_open");
-            nav.setAttribute("hidden");
+            nav.setAttribute("hidden", true);
             navOverlay.classList.remove("nav__overlay--open");
         }, 600);
     });
