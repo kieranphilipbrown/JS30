@@ -17,6 +17,7 @@ if (navOpenButton) {
     };
 
     navOpenButton.addEventListener("click", function() {
+        nav.removeAttribute("hidden");
         nav.classList.add("nav_open");
         navOverlay.classList.add("nav__overlay--open");
         var navItem = document.querySelectorAll(".nav__item");
@@ -28,6 +29,7 @@ if (navOpenButton) {
         fadeEffect(navItem);
         setTimeout(function() {
             nav.classList.remove("nav_open");
+            nav.setAttribute("hidden");
             navOverlay.classList.remove("nav__overlay--open");
         }, 600);
     });
@@ -37,6 +39,7 @@ if (navOpenButton) {
         fadeEffect(navItem);
         setTimeout(function() {
             nav.classList.remove("nav_open");
+            nav.setAttribute("hidden");
             navOverlay.classList.remove("nav__overlay--open");
         }, 600);
     });
