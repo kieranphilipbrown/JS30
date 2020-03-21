@@ -18,7 +18,6 @@ if (navOpenButton) {
 
     navOpenButton.addEventListener("click", function() {
         nav.classList.add("nav_open");
-        nav.removeAttribute("hidden");
         navOverlay.classList.add("nav__overlay--open");
         var navItem = document.querySelectorAll(".nav__item");
         fadeEffect(navItem);

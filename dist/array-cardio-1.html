@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58687737-2"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-58687737-2');
+        </script>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -99,7 +108,7 @@
                 <hr class="d4__hr">
                 <h4><em>The map() method takes and array, does something with it and returns a new array with the same length.</em></h4>
                 <p>.map() will always return the same amount of items as you give it. Filter doesn't. Filter can take in 10 things and return 2.</p>
-                <p>In example 2 we loop through the inventors and create a new array with just the first and last names.</p>
+                <p>In example 2, we loop through the inventors and create a new array with just the first and last names.</p>
             </div>
             <div class="d4__card">
                 <h2>.sort()</h2>
@@ -120,7 +129,7 @@ const numbersArray = [1, 2, 3, 4];
 const total = (accumulator, currentValue) => accumulator + currentValue;
 console.log(numbersArray.reduce(total));
 
-// this should give us 10
+// this should give us an output of 10
                 </code></pre>
                 <p>Here, accumulator will start at 0 and each loop currentValue in the array will be added until all values have been used and we should be left with the value 10.</p>
             </div>
