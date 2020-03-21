@@ -17,7 +17,10 @@ if (navOpenButton) {
     };
 
     navOpenButton.addEventListener("click", function() {
-        nav.classList.add("nav_open");
+        nav.removeAttribute("hidden");
+        setTimeout(function() {
+            nav.classList.add("nav_open");
+        }, 100);
         navOverlay.classList.add("nav__overlay--open");
         var navItem = document.querySelectorAll(".nav__item");
         fadeEffect(navItem);
@@ -28,9 +31,11 @@ if (navOpenButton) {
         fadeEffect(navItem);
         setTimeout(function() {
             nav.classList.remove("nav_open");
-            nav.setAttribute("hidden", true);
             navOverlay.classList.remove("nav__overlay--open");
         }, 600);
+        setTimeout(function() {
+            nav.setAttribute("hidden", "");
+        }, 700);
     });
 
     navOverlay.addEventListener("click", function() {
