@@ -83,6 +83,10 @@
     padding: 0;
 }
 
+.nav__list_item--current {
+    border-left: 2px solid #f0db4f;
+}
+
 .nav__item {
     border-bottom: 1px solid #393939;
     color: #a5a5a5;
